@@ -27,7 +27,7 @@ author :
 #
 #production_url : http://username.github.io
 production_url : http://jeremybai.github.io
-
+img_url : http://jeremybai.github.io/images
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
@@ -131,4 +131,4 @@ JB :
   
 
   
-  img_url:   http://jeremybai.github.io/images
+

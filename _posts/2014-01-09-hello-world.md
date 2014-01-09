@@ -9,4 +9,4 @@ tags: []
 ##第一篇博客
 
 
-![校园一瞥](http://jeremybai.github.io/images/校园一瞥.jpg "校园一瞥")
+![校园一瞥]({{site.img_url}}/校园一瞥.jpg)
