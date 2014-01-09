@@ -59,15 +59,15 @@ Jekyll（发音/'dʒiːk əl/，"杰克尔"）是一个静态站点生成器，�
     ├── _posts
     ├── _site
     └── index.html
-这些目录的介绍如下：
-  
-_config.yml：存储配置数据。很多全局的配置或者指令写在这里。  
-_drafts：	存放为发表的文章。这些是没有日期的文件。  
-_includes：	存放一些组件。  
-_layouts：	布局。  
-_posts：	存放写文章，格式化为：YEAR-MONTH-DAY-title.md。  
-_site：	最终生成的博客文件就在这里。  
-index.html：	博客的主页。  
+这些目录的介绍如下：  
+
+    _config.yml：存储配置数据。很多全局的配置或者指令写在这里。  
+    _drafts：	存放为发表的文章。这些是没有日期的文件。  
+    _includes：	存放一些组件。  
+    _layouts：	布局。  
+    _posts：	存放写文章，格式化为：YEAR-MONTH-DAY-title.md。  
+    _site：	最终生成的博客文件就在这里。  
+    index.html：	博客的主页。  
   
 
 ###4.2 开始修改
