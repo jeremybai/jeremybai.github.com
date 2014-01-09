@@ -6,11 +6,18 @@ category:  工具使用
 tags: [Jekyll]
 ---
 {% include JB/setup %}
+
+
 ##1 搭建环境
 操作系统：Windows 7旗舰版64位
 
-##2 准备工作
+##2 基础知识和准备工作
+Git是一个开源的分布式版本控制系统，用以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。使用Git可以帮助我们更有效的进行代码版本控制。
+
+Jekyll（发音/'dʒiːk əl/，"杰克尔"）是一个静态站点生成器，它会根据网页源码生成静态文件。它提供了模板、变量、插件等功能，所以实际上可以用来编写整个网站。首先你在本地编写符合Jekyll规范的网站源码，然后上传到Github，因为Github标配有Jekyll解析引擎，上传的站点可以由Github的Jekyll解析,生成静态页面，从而在Github上生成并托管整个网站。有人会疑惑为什么我们要安装Ruby呢？原因是Jekyll是用ruby制造的静态站点的ruby解析引擎（搭建博客时ruby不是必会的）
+
 确保你的电脑上已经安装了[Git](http://msysgit.github.io/ "msysGit"),[Ruby](http://rubyinstaller.org/downloads/ "Ruby Installer")和Jekyll，并且你已经拥有了一个github账户。   
+
 ###注意：
 在安装ruby的时候选择Ruby1.9.3这个版本，因为这个版本比较稳定并且提供给了比较全的包的支持，在安装过程中将是否添加系统路径打上勾，装完Ruby再把DEVELOPMENT KIT也装下，记得选择与Ruby1.9.3相匹配的开发包下载。
 安装完之后打开cmd，输入命令：
@@ -52,33 +59,17 @@ tags: [Jekyll]
     ├── _posts
     ├── _site
     └── index.html
-这些目录的介绍如下：  
-<table>
-    <tr>
-        <td>目录/文件</td><td>描述</td>
-    </tr>
-    <tr>
-        <td>_config.yml</td><td>存储配置数据。很多全局的配置或者指令写在这里。</td>
-    </tr>
-    <tr>
-        <td>_drafts</td><td>存放为发表的文章。这些是没有日期的文件。</td>
-    </tr>
-    <tr>
-        <td>_includes</td><td>存放一些组件。可以通过{% include file.ext %} 来引用。  </td>
-    </tr>
-    <tr>
-        <td>_layouts</td><td>布局。</td>
-    </tr>
-    <tr>
-        <td>_posts</td><td>存放写文章，格式化为：YEAR-MONTH-DAY-title.md。  </td>
-    </tr>
-    <tr>
-        <td>_site</td><td>最终生成的博客文件就在这里。</td>
-    </tr>
-    <tr>
-        <td>index.html</td><td>博客的主页。</td>
-    </tr>
-</table>
+这些目录的介绍如下：
+  
+_config.yml：存储配置数据。很多全局的配置或者指令写在这里。  
+_drafts：	存放为发表的文章。这些是没有日期的文件。  
+_includes：	存放一些组件。  
+_layouts：	布局。  
+_posts：	存放写文章，格式化为：YEAR-MONTH-DAY-title.md。  
+_site：	最终生成的博客文件就在这里。  
+index.html：	博客的主页。  
+  
+
 ###4.2 开始修改
 首先我们编辑_config.yml文件，将页面的一些基本参数改掉：
 
@@ -96,7 +87,7 @@ tags: [Jekyll]
 这时候我们运行目录jekyll build一下，发现主页并没有被改变还是显示的关于Jekyll-Bootstrap的，于是我们打开index.md，修改里面的内容，将与Bootstrap相关的东西全部删除，只留下posts list用来显示我们的博客列表。再打开README.md修改下readme，这样我们的博客框架就修改好了。
 接下来做的就是将代码push到github就可以了。
 
-    git add --all
+    git add .
     git commit -m "change the content"
     git push origin master
 ###4.3 创建文章
