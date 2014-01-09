@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 
-tagline: 愿有人陪你颠沛流离,如果没有，愿你成为自己的太阳。
+tagline: 绿蚁新醅酒，红泥小火炉。晚来天欲雪，能饮一杯无？
 ---
 {% include JB/setup %}
    
