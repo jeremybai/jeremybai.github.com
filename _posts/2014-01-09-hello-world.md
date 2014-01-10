@@ -2,7 +2,7 @@
 layout: post
 title: "第一篇博客"
 description: ""
-category: 
+category: []
 tags: []
 ---
 {% include JB/setup %}
