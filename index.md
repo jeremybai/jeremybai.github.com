@@ -4,8 +4,9 @@ title:
 tagline: 
 ---
 {% include JB/setup %}
-![]({{site.img_url}}/index.jpg)     
 
+![主页图片]({{site.img_url}}/index.jpg)     
+![博物馆旁]({{site.img_url}}/2014-01-09-hello-world-1.jpg) 
 ##文章列表
 <ul class="posts">
   {% for post in site.posts %}
