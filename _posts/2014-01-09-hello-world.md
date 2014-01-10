@@ -9,4 +9,6 @@ tags: []
 ##第一篇博客
 
 
-![校园一瞥]({{site.img_url}}/校园一瞥.jpg)
+![博物馆旁]({{site.img_url}}/2014-01-09-hello-world-1.jpg)
+![逸夫楼前自行车]({{site.img_url}}/2014-01-09-hello-world-2.jpg)
+![钟楼石柱]({{site.img_url}}/2014-01-09-hello-world-3.jpg)
