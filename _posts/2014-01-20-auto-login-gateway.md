@@ -23,14 +23,14 @@ tags: [python]
 我们已经看到了看到了我们提交的post数据了，现在我们就开始构造我们的post数据，我们需要将请求的数据构造成一个字典（为什么构造成字典接下来会有介绍）。
 
     data = {
-    			'TextBox1' : self.user,  #用户名
-    			'TextBox2' : self.pwd,   #密码
-    			'nw' : 'RadioButton1',   #免费地址
-    			'tm' : 'RadioButton6',	 #登陆2个小时
-    			'Button1' : u'登录网关'.encode('gb2312'),
-    			'__VIEWSTATE' :'/wEPDwUKMTM2NjA4NzMwMw8WAh4IcGFzc3dvcmQFCjUwNjUxMjV6eGMWAgIBD2QWDAIBDxYCHgRUZXh0ZWQCAw8PFgIfAWVkZAIFDxYCHwFlZAIHDxYCHgdWaXNpYmxlZ2QCCQ8WAh8CaGQCCw8WAh8BBTDlvZPliY3lnKjnur/kurrmlbA6PGIgc3R5bGU9J2NvbG9yOnJlZCc+MjA5OTwvYj5kGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYIBQxSYWRpb0J1dHRvbjEFDFJhZGlvQnV0dG9uMgUMUmFkaW9CdXR0b24zBQxSYWRpb0J1dHRvbjQFDFJhZGlvQnV0dG9uNQUMUmFkaW9CdXR0b242BQxSYWRpb0J1dHRvbjcFDFJhZGlvQnV0dG9uOA==',
-    			'__EVENTVALIDATION':'/wEWDQLF1pCSCQLs0bLrBgLs0fbZDALazsi9CQLazrwZAtTO6PQIAtTO/K8HAtTOgIoOAtTOlOUGAtTOuMANAtTOzLwEAoznisYGAoXZ9dsD'
-    		   }
+    		'TextBox1' : self.user,  #用户名
+    		'TextBox2' : self.pwd,   #密码
+    		'nw' : 'RadioButton1',   #免费地址
+    		'tm' : 'RadioButton6',	 #登陆2个小时
+    		'Button1' : u'登录网关'.encode('gb2312'),
+    		'__VIEWSTATE' :'/wEPDwUKMTM2NjA4NzMwMw8WAh4IcGFzc3dvcmQFCjUwNjUxMjV6eGMWAgIBD2QWDAIBDxYCHgRUZXh0ZWQCAw8PFgIfAWVkZAIFDxYCHwFlZAIHDxYCHgdWaXNpYmxlZ2QCCQ8WAh8CaGQCCw8WAh8BBTDlvZPliY3lnKjnur/kurrmlbA6PGIgc3R5bGU9J2NvbG9yOnJlZCc+MjA5OTwvYj5kGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYIBQxSYWRpb0J1dHRvbjEFDFJhZGlvQnV0dG9uMgUMUmFkaW9CdXR0b24zBQxSYWRpb0J1dHRvbjQFDFJhZGlvQnV0dG9uNQUMUmFkaW9CdXR0b242BQxSYWRpb0J1dHRvbjcFDFJhZGlvQnV0dG9uOA==',
+    		'__EVENTVALIDATION':'/wEWDQLF1pCSCQLs0bLrBgLs0fbZDALazsi9CQLazrwZAtTO6PQIAtTO/K8HAtTOgIoOAtTOlOUGAtTOuMANAtTOzLwEAoznisYGAoXZ9dsD'
+    		}
 这里插一句，在一开始调试的时候始终不能登录，原因就是在于构造的时候只写了前面5项，没有把`VIEWSTATE`和`EVENTVALIDATION`加上，后来实在不行，便抱着试试的心态把post的数据全部加上，发现就可以登录了=。=！。搜了下这个东西是干嘛的：VIEWSTATE是asp.net的服务器控件自动产生的，大家都知道，在asp时代，一个html控件的值,比如input 控件值,当我们把表单提交到服务器后, 页面再刷新回来的时候, input里面的数据已经被清空. 这是因为web的无状态性导致的, 服务端每次把html输出到客户端后就不再于客户端有联系.之后的asp.net巧妙的改变了这一点. 当我们在写一个asp.net表单时, 一旦标明了 `form runat=server` ,那么,asp.net就会自动在输出时给页面添加一个隐藏域  
 `<input type="hidden" name="__VIEWSTATE" value="">`.  
 有了这个隐藏域,页面里其他所有的控件的状态,包括页面本身的一些状态都会保存到这个控件值里面. 每次页面提交时一起提交到后台,asp.net对其中的值进行解码,然后输出时再根据这个值来恢复各个控件的状态.这篇文章介绍的稍微详细一点，感兴趣的点[这里](http://www.cnblogs.com/yzxchoice/archive/2006/09/08/498499.html)。
@@ -38,9 +38,9 @@ tags: [python]
 
     user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36'
     headers = {
-    			'Host'   : self.host,
-    			'Origin' : self.origin,  
-    			'User-Agent' : user_agent,
+    		  'Host'   : self.host,
+    		  'Origin' : self.origin,  
+    		  'User-Agent' : user_agent,
     		  }
 对有些 header 要特别留意，服务器会针对这些 header 做检查.比如说User-Agent，有些服务器或 Proxy 会通过该值来判断是否是浏览器发出的请求。或者Content-Type（我这里没有使用），在使用REST接口时，服务器会检查该值，用来确定 HTTP Body 中的内容该怎样解析，如果服务器需要的数据是JSON类型，你却设置为了XML类型的数据传给服务器，服务器是肯定不会接受的。常见的取值有：  
 application/xml ： 在 XML RPC，如 RESTful/SOAP 调用时使用  
