@@ -2,8 +2,10 @@
 layout: post
 title: "自动登录网关的python脚本"
 description: ""
-category: python
-tags: [python]
+categories: 
+- python
+- web
+tags: [python,网关，苏州大学]
 ---
 {% include JB/setup %}
 ### 摘要 ：
