@@ -131,8 +131,8 @@ ini 文件是文本文件，ini文件的数据格式一般为：
 			pass
 我们除了读取配置文件的信息之外还可以像配置文件里面写信息，有兴趣的点击[这里](http://docs.python.org/2/library/configparser.html)。 
 # 4 完成  
-这样一个简单脚本就完成了,运行的结果如下：
-![]({{site.img_url}}/2014-01-20/4.JPG)
+这样一个简单脚本就完成了,运行的结果如下：  
+![]({{site.img_url}}/2014-01-20/4.JPG)  
 当然还有很多容错方面的问题没有考虑到，如用户名密码错误怎么办，还有可以使用cookie来保存读取信息等等。接下里有时间慢慢改进吧。完整代码点击[这里](https://github.com/jeremybai/AutoLoginGateWay)，如果电脑上没有装python的同学，[这里](http://kuai.xunlei.com/d/ZmWaDsT3XaLcUgQA724)有打包成exe的程序，只要解压参考README运行即可。
 ### 注意： ###
-**编辑UserInfo.ini时不要使用微软的记事本，因为它在保存的时候会加上BOM头，最好使用notepad++编辑完选择格式为UTF-8无BOM格式编码然后保存。否则程序无法运行。**
+**编辑UserInfo.ini时不要使用微软的记事本，因为它在保存的时候会加上BOM头，导致读取文件出错，最好使用notepad++编辑完选择格式为UTF-8无BOM格式编码然后保存。否则程序无法运行。**
