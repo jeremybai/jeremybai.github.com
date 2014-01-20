@@ -3,7 +3,7 @@ layout: post
 title: "第一篇博客"
 description: ""
 category:
-tags: []
+tags: [苏州大学]
 ---
 {% include JB/setup %}
 <!--
