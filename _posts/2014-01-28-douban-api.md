@@ -11,24 +11,24 @@ tags: [豆瓣,API]
 {% include JB/setup %}
 
 　　最近在自己的网页中希望可以输入书籍的ISBN号就可以自动补全书籍的所有信息，人工输入工作量太大，就选择了调用豆瓣的API获得数据填写到表单中。做了两天才做好，网上有用的资料比较少，于是晒出自己这两天做的一些东西，希望可以帮助到需要的人，注意：APIV1.0和2.0是有区别的。在下面有提到，需要稍微留意。  
-　　下面的代码实现的功能都是将ISBN号为9787543632608（片山恭一的[《满月之夜白鲸现》](http://book.douban.com/subject/1220562/)）的图书信息返回出来，只是使用的方法不一样而已，运行的结果如下图：  
+　　下面的代码实现的功能都是将ISBN号为9787543632608（片山恭一的[《满月之夜白鲸现》](http://book.douban.com/subject/1220562/)）的图书信息返回出来，只是使用的方法不一样而已，运行的结果如下图,贴html代码似乎有点问题，还没找到解决办法，只能先转成图片上传，代码点击[这里](https://github.com/jeremybai/jeremybai.github.com/blob/master/images/2014-01-29/doubanapi.html)：  
 
-![]({{site.img_url}}/doubanapi.jpg) 
+![]({{site.img_url}}/2014-01-29/doubanapi.jpg) 
 
 ## 1. JS调用 ##
 
 　　通过豆瓣js中的函数来获得图书的信息。JS文件采用的是豆瓣的apiV2.0，不过返回出来结果和旧版的apiV1.0一样，返回的信息不是JSON格式，需要调用parseSubject函数来转为JSON对象。代码如下：
 
-
+![]({{site.img_url}}/2014-01-29/2.jpg)   
 
 ## 2. JQUERY调用 ##
 　　替换上面代码的script标签里面的内容。getJSON函数的第一个参数为url，第二个为回调函数，即获取url的JSON数据之后执行的函数，这个url是老版本的apiV1.0，所以同上面一样，还是要调用parseSubject函数。
 
-
+![]({{site.img_url}}/2014-01-29/3.jpg)   
 
 　　如果采用的是APIV2.0版，有些不同，首先getJSON函数url参数是新版的url，返回出来的数据格式就是JSON格式，不需要转换直接使用即可。有个问题，除了book.author可以加上.join(' / ')加上分隔符，其他参数加上这个函数就会出错，不知道什么原因。
     
-
+![]({{site.img_url}}/2014-01-29/4.jpg)   
 
 ##附：JSON格式 ##
 　　关于JSON格式，这个是在网上看到阮一峰老师写的[博客](http://www.ruanyifeng.com/blog/2009/05/data_types_and_json.html)的，写的很好，一下子就理解了。
