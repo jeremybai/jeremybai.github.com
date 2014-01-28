@@ -46,8 +46,8 @@ Jekyll（发音/'dʒiːk əl/，"杰克尔"）是一个静态站点生成器，�
 等待几分钟之后，在浏览器中输入http://USERNAME.github.com，你就会看到Jekyll-Bootstrap的样例博客了,gorgeous!如果你希望在本地来调试你的博客的话，只要在在Git bash中运行：
 
     $ cd USERNAME.github.com 
-    $ jekyll serve
-打开[http://localhost:4000/](http://localhost:4000/)上就可以看到效果了，这样你就可以在本地调试好之后push到github上。  
+    $ jekyll build
+build完之后再运行`jekyll server`这时候服务器就在运行了。打开[http://localhost:4000/](http://localhost:4000/)上就可以看到效果了，这样你就可以在本地调试好之后push到github上。  
 ##4 修改  
 ###4.1 基本结构
 接下来我们要做的就是在这个基础上把它修改成我们自己的博客了。我们介绍一个最基础的Jekyll博客的目录结构：     
@@ -100,6 +100,7 @@ Jekyll（发音/'dʒiːk əl/，"杰克尔"）是一个静态站点生成器，�
 
     rake page name="about.md"
     rake page name="pages/about.md"
+
 ##5 问题
 在过程中，也遇到了一些问题，整理如下：
 ###5.1 关于windows下git bash的中文显示。
@@ -132,3 +133,10 @@ Jekyll（发音/'dʒiːk əl/，"杰克尔"）是一个静态站点生成器，�
 
     export LC_ALL=zh_CN.UTF-8
     export LANG=zh_CN.UTF-8
+
+### 5.3 jekyll build 出现 invalid argument 错误
+
+出现这个问题可能是由于你的jekyll版本的问题造成的，1.4.3的版本刚刚出来可能不太稳定，改成1.4.2就行了。
+
+    gem uninstall jekyll
+    gem install jekyll --version "=1.4.2"
