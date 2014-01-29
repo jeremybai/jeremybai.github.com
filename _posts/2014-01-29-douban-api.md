@@ -21,7 +21,7 @@ tags: [豆瓣,API]
 
 <script src="https://gist.github.com/jeremybai/8680004.js"></script> 
 
-## 2. JQUERY调用 ##
+## 2. JQuery调用 ##
 　　替换上面代码的script标签里面的内容。getJSON函数的第一个参数为url，第二个为回调函数，即获取url的JSON数据之后执行的函数，这个url是老版本的apiV1.0，所以同上面一样，还是要调用parseSubject函数。
 
 <script src="https://gist.github.com/jeremybai/0d8572ea8305766b9d5d.js"></script>
