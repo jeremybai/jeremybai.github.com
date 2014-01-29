@@ -4,7 +4,7 @@ title:
 tagline: 
 ---
 {% include JB/setup %}
-![主页图片]({{site.img_url}}/index.jpg)     
+<!--![主页图片]({{site.img_url}}/index.jpg) -->    
 ##文章列表
 <ul class="posts">
   {% for post in site.posts %}
