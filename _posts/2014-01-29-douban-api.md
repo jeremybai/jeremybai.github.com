@@ -19,41 +19,7 @@ tags: [豆瓣,API]
 
 　　通过豆瓣js中的函数来获得图书的信息。JS文件采用的是豆瓣的apiV2.0，不过返回出来结果和旧版的apiV1.0一样，返回的信息不是JSON格式，需要调用parseSubject函数来转为JSON对象。代码如下：
 
-    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-    <HTML xmlns="http://www.w3.org/1999/xhtml">
-    <HEAD>
-    <TITLE></TITLE>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="http://www.douban.com/js/api.js?v=2"></script>
-    <script type="text/javascript" src="http://www.douban.com/js/api-parser.js?v=1"></script>
-    </HEAD>
-    <BODY>
-    </BODY>
-    <script>
-    DOUBAN.apikey = '00fa6c0654689a0202ef4412fd39ce06'
-    DOUBAN.getISBNBook({
-    isbn:'9787543632608',
-    callback:function(book1){
-       var subj = DOUBAN.parseSubject(book1)
-       var tl = subj.title ? subj.title : "";
-       var author = subj.author ? subj.author : "";
-       var tmp = "<img src="+subj.link.image+" style='margin:10px;float:left'>";
-       tmp += "<div>Title : <a href="+subj.link.alternate+" target='_blank'>"+tl+"</a></div>";
-       if (subj.attribute.author) tmp += "<div>Authors : "+(subj.attribute.author.join(' / '))+"</div>";
-       if (subj.attribute.isbn13) tmp += "<div>ISBN : "+(subj.attribute.isbn13.join(' / '))+"</div>";
-       if (subj.attribute.price) tmp += "<div>Price : "+(subj.attribute.price.join(' <br/>   '))+"</div>";
-       if (subj.attribute.pages) tmp += "<div>Pages : "+(subj.attribute.pages.join(' / '))+"</div>";
-       if (subj.attribute.publisher) tmp += "<div>Publisher : "+(subj.attribute.publisher.join(' <br/>   '))+"</div>";
-       if (subj.attribute.pubdate) tmp += "<div>Pubdate : "+(subj.attribute.pubdate.join(' / '))+"</div>";
-       if (subj.rating.average)
-    tmp +="<div>Rating: "+subj.rating.average+" / "+subj.rating.numRaters+decodeURI("%E4%BA%BA")+ "</div>"
-       tmp += "<p>"+(subj.summary ? subj.summary : "")+"</p>";
-       document.body.innerHTML = tmp;
-    }
-    })
-    </script>
-    </HTML>   
+ 	<script src="https://gist.github.com/jeremybai/8680004.js"></script> 
 
 ## 2. JQUERY调用 ##
 　　替换上面代码的script标签里面的内容。getJSON函数的第一个参数为url，第二个为回调函数，即获取url的JSON数据之后执行的函数，这个url是老版本的apiV1.0，所以同上面一样，还是要调用parseSubject函数。
