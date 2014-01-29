@@ -51,11 +51,11 @@ tags: [工具使用]
     git remote set-url origin git@github.com:USERNAME/USERNAME.github.com.git
     git push origin master
 ###3.3 结果
-　　等待几分钟之后，在浏览器中输入http://USERNAME.github.com，你就会看到Jekyll-Bootstrap的样例博客了,gorgeous!如果你希望在本地来调试你的博客的话，只要在在Git bash中运行：
+　　等待几分钟之后，在浏览器中输入 http://USERNAME.github.com ，你就会看到Jekyll-Bootstrap的样例博客了,gorgeous!如果你希望在本地来调试你的博客的话，只要在在Git bash中运行：
 
     $ cd USERNAME.github.com 
     $ jekyll build
-　　build完之后再运行`jekyll server`这时候服务器就在运行了。打开[http://localhost:4000/](http://localhost:4000/)上就可以看到效果了，这样你就可以在本地调试好之后push到github上。  
+　　build完之后再运行`jekyll server`这时候服务器就在运行了。打开 [http://localhost:4000/](http://localhost:4000/) 上就可以看到效果了，这样你就可以在本地调试好之后push到github上。  
 ##4 修改  
 ###4.1 基本结构
 　　接下来我们要做的就是在这个基础上把它修改成我们自己的博客了。我们介绍一个最基础的Jekyll博客的目录结构：     
