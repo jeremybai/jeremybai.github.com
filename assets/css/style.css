@@ -16,7 +16,7 @@ p {
   width: 100px;
   height: 100px;
   margin: 55px auto 35px;
-  background: url(/images/avatar.png);
+  background: url(/images/avatar.jpg);
   border-radius: 50%;
   box-shadow: 0 0 0px 4px white, 0 0 4px 4px #eee;
   overflow: hidden;
@@ -29,7 +29,7 @@ p {
     animation: spin .35s linear 1; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     #avatar {
-      background: url(/images/avatar@2X.png);
+      background: url(/images/avatar.jpg);
       -webkit-background-size: 100px 100px;
       -moz-background-size: 100px 100px;
       background-size: 100px 100px; } }
@@ -39,32 +39,46 @@ p {
 	-webkit-transform: rotate(0deg); }
 
   to {
-	-webkit-transform: rotate(359deg); } }
+	-webkit-transform: rotate(-359deg); } }
 
 @-moz-keyframes spin {
   from {
 	-moz-transform: rotate(0deg); }
 
   to {
-	-moz-transform: rotate(359deg); } }
+	-moz-transform: rotate(-359deg); } }
 
 @-o-keyframes spin {
   from {
 	-o-transform: rotate(0deg); }
 
   to {
-	-o-transform: rotate(359deg); } }
+	-o-transform: rotate(-359deg); } }
 
 @-ms-keyframes spin {
   from {
 	-ms-transform: rotate(0deg); }
 
   to {
-	-ms-transform: rotate(359deg); } }
+	-ms-transform: rotate(-359deg); } }
 
 @keyframes spin {
   from {
 	transform: rotate(0deg); }
 
   to {
-	transform: rotate(359deg); } }
+	transform: rotate(-359deg); } }
+	
+	
+	
+	
+
+.tags-btn {
+  color: #a6a6a7;
+  -webkit-transition: color .3s, background .3s;
+  -moz-transition: color .3s, background .3s;
+  -ms-transition: color .3s, background .3s;
+  -o-transition: color .3s, background .3s;
+  transition: color .3s, background .3s; }
+  .tags-btn:hover {
+    color: #ffffff;

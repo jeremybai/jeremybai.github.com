@@ -964,10 +964,10 @@ pre {
     padding: 26px;
     height: 26px;
   }
-  .the-header .unit-head .nav-global li a:hover {
+/*   .the-header .unit-head .nav-global li a:hover {
     background-color: #ffffff;
     color: #000000;
-  }
+  } */
   .the-header .unit-head .nav-global li:nth-child(2) {
     border-width: 0 1px;
   }
