@@ -965,8 +965,8 @@ pre {
     height: 26px;
   }
   .the-header .unit-head .nav-global li a:hover {
-    background-color: #fff04a;
-    color: #474747;
+    background-color: #ffffff;
+    color: #000000;
   }
   .the-header .unit-head .nav-global li:nth-child(2) {
     border-width: 0 1px;
@@ -1040,6 +1040,9 @@ pre {
   }
   .the-header .unit-head .nav-global li a,
   .the-header .unit-head .nav-global li div {
+  	text-align:center;
+	font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
+	font-size: 30px;
     display: block;
     padding: 2px 5px;
     height: auto;
@@ -1053,8 +1056,9 @@ pre {
     width: auto;
   }
   .the-header .unit-head .nav-global .logo a {
+	text-align:center;
     display: block;
-    font-size: 30px;
+    font-size: 50px;
     line-height: 52px;
     margin-bottom: 26px;
     padding-left: 5px;

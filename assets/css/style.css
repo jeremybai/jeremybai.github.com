@@ -1,0 +1,70 @@
+p {
+	font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
+}
+
+#shinyashokud {
+  width: 312px;
+  height: 242px;
+  margin: 0px auto 0px;
+  background: url(/images/shinyashokud.jpg);
+  border-radius: 5%;
+  box-shadow: 0 0 0px 4px white, 0 0 4px 4px #eee;
+  overflow: hidden;
+  display: block; }
+
+#avatar {
+  width: 100px;
+  height: 100px;
+  margin: 55px auto 35px;
+  background: url(/images/avatar.png);
+  border-radius: 50%;
+  box-shadow: 0 0 0px 4px white, 0 0 4px 4px #eee;
+  overflow: hidden;
+  display: block; }
+  #avatar:hover {
+    -webkit-animation: spin .35s linear 1;
+    -moz-animation: spin .35s linear 1;
+    -ms-animation: spin .35s linear 1;
+    -o-animation: spin .35s linear 1;
+    animation: spin .35s linear 1; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #avatar {
+      background: url(/images/avatar@2X.png);
+      -webkit-background-size: 100px 100px;
+      -moz-background-size: 100px 100px;
+      background-size: 100px 100px; } }
+ 
+@-webkit-keyframes spin {
+  from {
+	-webkit-transform: rotate(0deg); }
+
+  to {
+	-webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes spin {
+  from {
+	-moz-transform: rotate(0deg); }
+
+  to {
+	-moz-transform: rotate(359deg); } }
+
+@-o-keyframes spin {
+  from {
+	-o-transform: rotate(0deg); }
+
+  to {
+	-o-transform: rotate(359deg); } }
+
+@-ms-keyframes spin {
+  from {
+	-ms-transform: rotate(0deg); }
+
+  to {
+	-ms-transform: rotate(359deg); } }
+
+@keyframes spin {
+  from {
+	transform: rotate(0deg); }
+
+  to {
+	transform: rotate(359deg); } }

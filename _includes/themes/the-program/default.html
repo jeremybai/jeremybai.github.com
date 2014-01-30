@@ -11,7 +11,7 @@
 	<link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
 	<link href="http://feeds.feedburner.com/{{ site.author.feedbaname }}" rel="alternate" title="{{ page.title }}" type="application/atom+xml">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-	
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
 <body>
 
@@ -20,12 +20,14 @@
 		<div class="unit-head">
 			<div class="unit-inner unit-head-inner">
 				<nav class="nav-global">
+					<a href="/index.html" id="shinyashokud"></a>
+					<br/>
 					<ul>
-						<li class="logo"><a href="/">{{ site.title }}</a></li>
-						<li class="archive"><a href="/archive.html">存档</a></li>
-						<li class="page"><a href="/pages.html">页面</a></li>
-						<li class="category"><a href="/categories.html">分类</a></li>
-						<li class="tag"><a href="/tags.html">标签</a></li>
+						<!--<li class="logo"><a href="/">{{ site.title }}</a></li>-->
+						<li class="archive"><a href="/archive.html">存&nbsp&nbsp档</a></li><br/>
+						<li class="page"><a href="/pages.html">页&nbsp&nbsp面</a></li><br/>
+						<li class="category"><a href="/categories.html">分&nbsp&nbsp类</a></li><br/>
+						<li class="tag"><a href="/tags.html">标&nbsp&nbsp签</a></li><br/>
 						<!--<li class="forkme"><div><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=plusjade&repo=jekyll-bootstrap&type=fork&count=true"
 									allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe></div></li> -->
 					</ul>
@@ -46,6 +48,7 @@
 		<div class="unit-foot">
 			<div class="unit-inner unit-foot-inner">
 				<div class="misc vcard">
+					<a href="/index.html" id="avatar"></a>
 					<h4>关于</h4>
 					<ul>
 						<li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
@@ -81,5 +84,6 @@
 </script>
   
   {% include JB/analytics %}
+
 </body>
 </html>
