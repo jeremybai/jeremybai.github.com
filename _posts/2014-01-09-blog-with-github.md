@@ -14,11 +14,11 @@ tags: [工具使用]
 ##2 基础知识和准备工作
 ![](http://git-scm.com/images/logo@2x.png)    
 
-　　**Git**是一个开源的分布式版本控制系统，用以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。使用Git可以帮助我们更有效的进行代码版本控制。  
+　　**Git**  是一个开源的分布式版本控制系统，用以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。使用Git可以帮助我们更有效的进行代码版本控制。  
 
 ![](http://jekyllcn.com/img/logo-2x.png)    
   
-　　**Jekyll** 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 [Markdown](http://daringfireball.net/projects/markdown/) （或者 [Textile](http://textile.sitemonks.com/)） 以及 [Liquid](http://docs.shopify.com/themes/liquid-basics) 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。它会根据网页源码生成静态文件。它提供了模板、变量、插件等功能，所以实际上可以用来编写整个网站。
+　　**Jekyll**是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 [Markdown](http://daringfireball.net/projects/markdown/) （或者 [Textile](http://textile.sitemonks.com/)） 以及 [Liquid](http://docs.shopify.com/themes/liquid-basics) 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。它会根据网页源码生成静态文件。它提供了模板、变量、插件等功能，所以实际上可以用来编写整个网站。
 
 　　Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 你用你最喜欢的标记语言来写文章，可以是 Markdown，也可以是 Textile,或者就是简单的 HTML, 然后 Jekyll 就会帮你套入一个或一系列的布局中。在整个过程中你可以设置URL路径, 你的文本在布局中的显示样式等等。这些都可以通过纯文本编辑来实现，最终生成的静态页面就是你的成品了。
 
@@ -108,7 +108,7 @@ tags: [工具使用]
 　　比如页眉显示的文字，以及页脚显示的作者，邮件等等。在_posts文件夹下有个core-samples文件夹存放的简单样例，我们可以把它删掉：
 
     rm -rf _posts/core-samples
-　　这时候我们运行目录jekyll build一下，发现主页并没有被改变还是显示的关于Jekyll-Bootstrap的，于是我们打开index.md，修改里面的内容，将与Bootstrap相关的东西全部删除，只留下posts list用来显示我们的博客列表。再打开README.md修改下readme，这样我们的博客框架就修改好了。
+　　这时候我们运行目录jekyll build一下，发现主页并没有被改变还是显示的关于Jekyll-Bootstrap的，于是我们打开index.md，修改里面的内容，将与Bootstrap相关的东西全部删除，只留下posts list用来显示我们的博客列表。再打开README.md修改下readme，这样我们的博客框架就修改好了。  
 　　接下来做的就是将代码push到github就可以了。
 
     git add .
@@ -192,3 +192,35 @@ tags: [工具使用]
 
     gem uninstall jekyll
     gem install jekyll --version "=1.4.2"
+
+### 5.4 cannot close fd before spawn
+　　`Jekyll build`时产生的警告"cannot close fd before spawn"而导致`jekyll build`失败（反馈消息：`"Conversion error: There was an error converting _posts/xxx.md"`），因为这个问题实在困扰了我好久。其实是pygments.rb版本导致。产生这个警告的大多数原因是pygments.rb版本不正确。首先查看pygments版本，简单的方法，可以先在ruby文件夹中搜索pygments.rb 会看到以版本名称命名的文件夹，如pygments.rb-0.5.4，然后再运行：
+  
+    gem uninstall pygments.rb --version "=0.5.4"
+    gem install pygments.rb --version "=0.5.0"
+　　然后再`jekyll build`，应该就会成功了。  
+
+### 5.5 jekyll中的不能嵌套html代码  
+　　之前不能在markdown文件中嵌入html代码，在build的时候总会出问题，貌似是转义字符的问题，现在可以了，解决方法是使用RDiscount模板解释器替代Maruku。这个解释器到底是干嘛用的呢？和其它轻量标记语言一样，Markdown并不能也不旨在替代HTML；因为所有的网页最终都要交给浏览器来解析的，而浏览器只认识HTML，因此，单独使用Markdown编写的文本并不能为浏览器所认识；所以，在浏览器和Markdown之间还要有一个东西，那就是翻译器。它将已完成的Markdown格式的文本转换成HTML文本，然后才能交由浏览器来解析和排版。Markdown官方发布的翻译器是一个Perl脚本，在命令行执行如下命令即可转换Markdown文本到HTML文本：
+
+    perl Markdown.pl --html4tags sample.txt > sample.html  
+
+　　Maruku是纯ruby的Markdown模版解释器；rdiscount 则是c写的模版解释器，两者的效率显然不同。rdiscount 的安装很简单：
+
+    gem install rdiscount
+　　再编辑_config.yml文件，加上：
+
+    markdown: rdiscount
+
+　　再运行jekyll build和jekyll server就不会有错误了。再补充一点，如果使用使 rdiscount，那么这种格式的代码就不能被高亮。
+
+    ``` ruby
+    require 'rubygems'
+    
+    def foo
+    puts 'foo'
+    end
+    
+    #comment
+    ```
+　　如果使用的是redcarpet解释器，上面的那种格式的代码高亮能够被识别，但是有个缺点，不能识别粗体。

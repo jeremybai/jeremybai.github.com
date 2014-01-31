@@ -129,11 +129,11 @@ JB :
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
   
-# markdown: rdiscount
+markdown: rdiscount
 # markdown: redcarpet
 # redcarpet:
     # extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
-markdown: redcarpet
+# markdown: redcarpet
 redcarpet:
   extensions:
     - hard_wrap
