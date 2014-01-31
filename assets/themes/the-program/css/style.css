@@ -196,6 +196,10 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
+  /* 图片居中 */
+	clear: both;
+	display: block;
+	margin:auto;  
 }
 svg:not(:root) {
   overflow: hidden;
