@@ -5,7 +5,7 @@ p {
 #shinyashokud {
   width: 312px;
   height: 242px;
-  margin: 0px auto 40px;
+  margin: 10px auto 20px auto;
   background: url(/images/shinyashokud.jpg);
   border-radius: 5%;
   box-shadow: 0 0 0px 4px white, 0 0 4px 4px #eee;
