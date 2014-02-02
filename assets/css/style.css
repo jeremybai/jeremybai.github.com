@@ -5,7 +5,7 @@ p {
 #shinyashokud {
   width: 312px;
   height: 242px;
-  margin: 0px auto 0px;
+  margin: 0px auto 40px;
   background: url(/images/shinyashokud.jpg);
   border-radius: 5%;
   box-shadow: 0 0 0px 4px white, 0 0 4px 4px #eee;
@@ -75,6 +75,7 @@ p {
 
 .tags-btn {
   color: #a6a6a7;
+  font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
   -webkit-transition: color .3s, background .3s;
   -moz-transition: color .3s, background .3s;
   -ms-transition: color .3s, background .3s;
