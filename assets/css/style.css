@@ -1,6 +1,13 @@
 p {
 	font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
 }
+.warning a,
+.warning {
+	text-align:center;
+	font-size:25px;
+	color:red;
+}
+
 
 #shinyashokud {
   width: 312px;
@@ -83,3 +90,5 @@ p {
   transition: color .3s, background .3s; }
   .tags-btn:hover {
     color: #ffffff;
+	
+	

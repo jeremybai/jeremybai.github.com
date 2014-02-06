@@ -794,6 +794,7 @@ pre {
 }
 .unit-article .unit-foot .gotop {
   margin-bottom: 0;
+  text-align:right;
 }
 /* post & page */
 .layout-page .tag_box {
