@@ -41,6 +41,7 @@ tags: [工具使用]
     jekyll -v
 　　和上面一样，显示版本号就表明安装成功了。这个时候，我们的准备工作已经完成，接下来我们会在三分钟制备搭建一个bootstrap风格的个人博客。
 ##3 搭建博客
+　　我们使用github创建页面时，有两种方式，一种是用户或者组织的页面，另外一种就是项目页面。
 ###3.1 创建新的代码库。 
 　　在你自己的[github](https://github.com "Github")主页上创建一个新的代码库，取名为：USERNAME.github.com，其中USERNAME为你自己的用户名。
 ###3.2 安装Jekyll-Bootstrap
