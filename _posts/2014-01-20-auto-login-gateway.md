@@ -135,7 +135,13 @@ tags: [苏州大学,网关]
 # 4 完成  
 　　这样一个简单脚本就完成了,运行的结果如下：  
 ![]({{site.img_url}}/2014-01-20/4.JPG)    
-　　当然还有很多容错方面的问题没有考虑到，如用户名密码错误怎么办，还有可以使用cookie来保存读取信息等等。接下里有时间慢慢改进吧。完整代码点击[这里](https://github.com/jeremybai/AutoLoginGateWay)，如果电脑上没有装python的同学，点击这里[(32位系统)](http://pan.baidu.com/s/1i33bXYX)和[(64位系统)](http://pan.baidu.com/s/1mgG3f1u)有打包成exe的程序，只要解压参考README运行即可。
+　　当然还有很多容错方面的问题没有考虑到，如用户名密码错误怎么办，还有可以使用cookie来保存读取信息等等。接下里有时间慢慢改进吧。  
+# 5 下载
+　　完整代码点击[这里](https://github.com/jeremybai/AutoLoginGateWay)，如果电脑上没有装python的同学，点击这里  
+　　[(32位系统版本)](http://pan.baidu.com/s/1i33bXYX)  
+　　和  
+　　[(64位系统版本)](http://pan.baidu.com/s/1mgG3f1u)  
+　　有打包成exe的程序，只要解压参考README运行即可。
 ### 注意： ###
 　　**编辑UserInfo.ini时不要使用微软的记事本，因为它在保存的时候会加上BOM头，导致读取文件出错，最好使用notepad++编辑完选择格式为UTF-8无BOM格式编码然后保存。否则程序无法运行。**
 ## 补 ##
