@@ -16,11 +16,11 @@ tags: [苏州大学,网关]
 　　首先我们先分析一下我们登陆网关的流程是怎么样的。当我们打开wg.suda.edu.cn这个网站时，选择了登陆时间和免费网址等几个选项，再点击“登陆网关”的时候，就会产生post请求，那么是什么post请求呢？这就要说到超文本传输协议（HTTP）了，HTTP的设计目的是保证客户机与服务器之间的通信，它的工作方式是客户机与服务器之间的请求-应答协议。web浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。在客户机和服务器之间进行请求-响应时，GET和POST方法是两种最常被用到的http请求方法。POST方法用于向指定的资源提交要被处理的数据，GET方法从指定的资源请求数据。在我们点击“登陆网关”的时候，产生的post请求包含的信息的大概含义就是我们的浏览器（也就是客户端）对网络中心的服务器说：我需要2个小时的上网时间。服务器就会根据这个请求执行相应的操作。  
 ## 1.2 伪造数据 
 　　我们要做的就是伪造浏览器提交的post数据，那么如何查看浏览器提交的数据呢？以chrome为例，打开wg.suda.edu.cn，按F12，刷新页面，点击到Network标签下我们就可以看到产生的HTTP 方法了
-![]({{site.img_url}}/2014-01-20/1.JPG) 
+![](http://d.pcs.baidu.com/thumbnail/af8dc6d1b9b7c41b377a21d229ff5654?fid=859179042-250528-99345073&time=1392713681&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-fsZoY2mVluuPNjDnHa7SkqGnLrw%3D&expires=8h&prisign=RK9dhfZlTqV5TuwkO5ihMQzlM241kT2YfffnCZFTaEPwOxHv/XxtwRXLxDSXMBba1Ms9seOiqT9/QffwI8K2Baw0mmLABRQNl51b/oS8+InqoadADmwcyvUvQUkAvl8j879BObtgHePZ09BZiFo3CF7dwGcK/xIzausW8RTta6nycgI5A4W/Ju5XK/lbx40b7xvlT+8yG2JtdgCRiVnR1ML4mUrvg32eSuq8iSxudjQ=&r=250287517&size=c850_u580&quality=100) 
 　　输入你的账号和密码，点击登陆网关会发现有个post请求，这个就是我们要找的东西了！
-![]({{site.img_url}}/2014-01-20/2.JPG) 
+![](http://d.pcs.baidu.com/thumbnail/69c21168b55a4fb4d35ea56d9102b38e?fid=859179042-250528-3942476861&time=1392713681&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-KhRgRucLGYjpAw4o%2BkbYr%2BfQ7sg%3D&expires=8h&prisign=RK9dhfZlTqV5TuwkO5ihMQzlM241kT2YfffnCZFTaEPwOxHv/XxtwRXLxDSXMBba1Ms9seOiqT9/QffwI8K2Baw0mmLABRQNl51b/oS8+InqoadADmwcyvUvQUkAvl8j879BObtgHePZ09BZiFo3CF7dwGcK/xIzausW8RTta6nycgI5A4W/Ju5XK/lbx40b7xvlT+8yG2JtdgCRiVnR1ML4mUrvg32eSuq8iSxudjQ=&r=744732687&size=c850_u580&quality=100) 
 　　点击这个post数据，找到Request Header和Form Data，这两项是我们着重关注的。
-![]({{site.img_url}}/2014-01-20/3.JPG) 
+![](http://d.pcs.baidu.com/thumbnail/b012772f034f1ec9c309613c7754b91a?fid=859179042-250528-346253091&time=1392713681&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-gVZtToUfGXT3SguRcyzQfeVGFlY%3D&expires=8h&prisign=RK9dhfZlTqV5TuwkO5ihMQzlM241kT2YfffnCZFTaEPwOxHv/XxtwRXLxDSXMBba1Ms9seOiqT9/QffwI8K2Baw0mmLABRQNl51b/oS8+InqoadADmwcyvUvQUkAvl8j879BObtgHePZ09BZiFo3CF7dwGcK/xIzausW8RTta6nycgI5A4W/Ju5XK/lbx40b7xvlT+8yG2JtdgCRiVnR1ML4mUrvg32eSuq8iSxudjQ=&r=142407762&size=c850_u580&quality=100) 
 　　我们已经看到了看到了我们提交的post数据了，现在我们就开始构造我们的post数据，我们需要将请求的数据构造成一个字典（为什么构造成字典接下来会有介绍）。
 
     data = {
