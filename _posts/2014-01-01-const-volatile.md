@@ -44,15 +44,14 @@ tags: []
 # 3 修改const常量
 　　既然const修饰的变量的是只读的，那么很自然的想到能不能取得变量的地址然后直接修改地址处的值来达到修改const变量的目的。写个简单的程序验证下可不可以：
 {% highlight c++ %}
- #include <stdio.h>
- int main()
- {
+#include <stdio.h>
+int main()
+{
 	const int a = 10;
     int *a_ptr=(int*)&a;
     *a_ptr=1000;
 	printf("a = %d\n",a ); 
     printf("*a_ptr = %d\n",*a_ptr);
-
 }
 {% endhighlight %}  
 运行环境：`ubuntu 12.04.3 gcc `  
