@@ -2,8 +2,9 @@
 layout: post
 title: "const volatile修饰的变量"
 description: ""
-category: 
-tags: [苏州大学]
+categories: 
+- C
+tags: []
 ---
 {% include JB/setup %}
 # 1 const volatile修饰的意义 
