@@ -142,3 +142,5 @@ redcarpet:
     - strikethrough
     - fenced_code_blocks
     - tables
+# Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
+excerpt_separator: ""  
