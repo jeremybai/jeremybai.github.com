@@ -20,9 +20,10 @@ tags: [MQX,操作系统,飞思卡尔]
 　　我们可以计算一下：0-59这60个32位寄存器可以控制的中断等级为32/8*60=240个，正好等于255-15。而前15个中断优先级（前三个不能被修改）则是由SHPR1-SHPR3（System Handler Priority Register，系统异常优先级寄存器）控制。   
 
 　　和异常相关的寄存器有：PRIMASK、FAULTMASK和BASEPRI。PRIMASK屏蔽所有外部中断，只有NMI和硬fault可以被响应；FAULTMASK和PRIMASK工作方式相同，区别在于FAULTMASK屏蔽除NMI外其他所有中断，包括硬fault;而BASEPRI代表一个阈值，只有比这个优先级高的异常才能响应（也就是值小于BASEPRI寄存器的值）。而关于单个中断的开关是由NVIC\_ISER0-7（中断使能寄存器）和NVIC\_ICER0-7（中断除能寄存器）控制的。程序里经常使用的CPSID I和CPSIE I指令设置的是PRIMASK寄存器，而CPSID F和CPSIE F设置的是FAULTMASK寄存器。  
-
-　　在MQX中，**中断的触发会受到当前运行的任务的影响**（后面会讲到如何影响）。这里还要介绍几个概念：ENABLE\_SR、TASK\_SR、ACTIVE\_SR和DISABLE\_SR。这几个变量存在于不同的结构体中，有些是全局的，有些是任务独享的，不仅和中断有关，还和任务调度有关。看代码时被这几个概念弄得“意识模糊”了。重新看代码看了好几遍才稍微清楚一点，下面这张图介绍了这几个变量的关系。    
+## 任务优先级和中断优先级 ##
+　　在MQX中，**中断的触发会受到当前运行的任务的影响**（后面会讲到如何影响）。任务的优先级和中断的优先级是绑定的，任务的优先级范围理论上是0-65535，MQX中使用了高3位（0-7）来表示中断优先级，所以中断的优先级范围是0-7。这里还要介绍几个概念：ENABLE\_SR、TASK\_SR、ACTIVE\_SR和DISABLE\_SR。这几个变量存在于不同的结构体中，有些是全局的，有些是任务独享的，不仅和中断有关，还和任务调度有关。看代码时被这几个概念弄得“意识模糊”了。重新看代码看了好几遍才稍微清楚一点，下面这张图介绍了这几个变量的关系。    
 ![2](http://g.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=641de09bb1de9c82a265fd8b5cb1bb7b/f3d3572c11dfa9ec7c5652b560d0f703918fc11c.jpg)
+### ENABLE\_SR ###
 　　ENABLE\_SR是在\_psp\_init\_readyqs(初始化就绪队列)函数中被初始化的：  
 {% highlight c++ %}
 ...
@@ -43,11 +44,13 @@ while (n--)
 }
 ...
 {% endhighlight %} 
-　　可以看出，对于不同的就绪队列，它们的ENABLE\_SR的值也是不一样的，CORTEX\_PRIOR这个宏将任务优先级加上MQX_HARDWARE_INTERRUPT_LEVEL_MAX（初始化结构体中设置为2）作为参数计算出来（这个宏的作用就是将n+2左移5位）。不同的n对于不同的ENABLE\_SR，当n大于等于6时便全部为0了。具体值如下：  
+　　可以看出，对于不同的就绪队列，它们的ENABLE\_SR的值也是不一样的，CORTEX\_PRIOR这个宏将任务优先级加上MQX_HARDWARE_INTERRUPT_LEVEL_MAX（初始化结构体中设置为2，可以根据不同应用场合修改）作为参数计算出来（这个宏的作用就是将n+2左移5位）赋值给ENABLE\_SR。因为硬件优先级用了3位表示，也就意味着当任务的优先级大于等于6（6+2>7）的时候，已经不能对中断进行屏蔽了，所以优先级大于等于6的就绪队列的ENABLE\_SR都是0x00（之后把这个值赋给BASEPRI寄存器的时候就不能屏蔽任何中断了）。不同的n对于不同的ENABLE\_SR，当n大于等于6时便全部为0了。具体值如下所示，当MQX_HARDWARE_INTERRUPT_LEVEL_MAX被设置为2时，也就意味着任务可以响应比它优先级低1级的中断，比如说任务优先级为3，它所属的就绪队列的ENABLE\_SR等于0xA0，高3位等于5。那么当它运行的时候，中断优先级大于等于5（3+2）的中断都会被屏蔽掉，如果任务优先级为7，那么它运行的时候不能屏蔽任何中断。
 [![3](http://g.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=219434b640a7d933bba8e0779d7bea62/64380cd7912397dd8f6396a65b82b2b7d0a2877d.jpg)](http://g.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=219434b640a7d933bba8e0779d7bea62/64380cd7912397dd8f6396a65b82b2b7d0a2877d.jpg)
+### TASK\_SR ###
 　　每一个任务描述符结构体都有一个TASK\_SR成员，每当初始化创建任务的时候就会将就绪队列的ENABLE\_SR赋值给任务描述符的TASK\_SR，这也就意味着每个任务的TASK\_SR都是对应自己就绪队列的ENABLE\_SR。  
 
     td_ptr->TASK_SR = ready_q_ptr->ENABLE_SR;
+### ACTIVE\_SR ###
 　　ACTIVE\_SR是内核数据结构的一个成员变量，所以它是一个全局的变量，它在初始化内核数据区函数（\_mqx\_init_kernel\_data\_internal）中被赋值为DISABLE\_SR的值：  
 
     kernel_data->ACTIVE_SR = kernel_data->DISABLE_SR;
@@ -60,6 +63,7 @@ ASM_LABEL(switch_task)
                 ldrh r3, [r2, #TD_TASK_SR]			
                 strh r3, [r0, #KD_ACTIVE_SR]        
 {% endhighlight %} 
+### DISABLE\_SR ###
 　　DISABLE\_SR和ACTIVE\_SR类似，都是存在于内核数据区的，它的初始化是在\_psp\_set\_kernel\_disable\_level函数中设置的:
 {% highlight c++ %} 
 //MQX_HARDWARE_INTERRUPT_LEVEL_MAX=2
@@ -76,7 +80,7 @@ temp = init_ptr->MQX_HARDWARE_INTERRUPT_LEVEL_MAX;
 　　再一次看到这个CORTEX_PRIOR宏了，可以计算得出DISABLE\_SR被初始化为了0x40。  
 
 　　我们重新再把这几个变量捋一遍，首先在初始化的时候，最先被赋值的是全局的DISABLE\_SR，它被赋值为了0x40；接着在初始化内核数据区时会将DISABLE\_SR赋值给了全局的ACTIVE\_SR，这样ACTIVE\_SR也等于0x40；创建就绪队列的时候，会给每一个就绪队列一个ENABLE\_SR；只要任务被创建时被放到哪个就绪队列，它所在的就绪队列的ENABLE\_SR的值就会赋给该任务的TASK\_SR；当这个任务被置于激活态时，也就是即将运行的时候，任务的TASK\_SR就会被赋给全局的ACTIVE\_SR。  
-
+### 关中断开中断 ###
 　　说到底，最终有影响力的还是这两个全局的变量：DISABLE\_SR和ACTIVE\_SR，因为他们两个是赋值的“终点”。从另外一个方面考虑，在MQX中的关中断和开中断并不是像其他的RTOS里面可能只是简单的CPSIE I和CPSID I两条指令，而是使用的\_int\_disable和\_int\_enable这两个函数。我们说过MQX中正在运行的任务会对当前触发的中断产生影响，从刚才这几个变量赋值的流程中，是不是能够略微嗅出什么呢？这里就要介绍MQX的关开中断了，首先介绍关中断的函数：  
 {% highlight c++ %} 
 #define _INT_DISABLE_CODE()                             \
@@ -113,7 +117,7 @@ typedef struct psp_int_context_struct
     uint_32                             ERROR_CODE;
 } PSP_INT_CONTEXT_STRUCT, _PTR_ PSP_INT_CONTEXT_STRUCT_PTR;
 {% endhighlight %}
-　　这些上下文结构体是存在于中断栈中的一个链表维护的，当中断发生时首先进入\_int\_kernel\_isr，会将IN_ISR（中断嵌套层数）加1，接着将4个变量入栈，分别是：错误码、BASEPRI、IPSR（异常号）以及内核数据区的当前中断上下文压入中断栈，正好就对应于PSP\_INT\_CONTEXT\_STRUCT结构体的四个成员，**这样一来就相当于给INTERRUPT\_CONTEXT\_PTR赋了值**，压完之后会将当前的MSP存到INTERRUPT\_CONTEXT\_PTR中去，这样一来，**每次发生中断的时候INTERRUPT\_CONTEXT\_PTR都是指向的上一次中断的相关信息了**。下图显示了中断栈中这些中断上下文结构体如何存储的。  
+　　这些上下文结构体是由中断栈中的一个链表维护的，当中断发生时首先进入\_int\_kernel\_isr，会将IN_ISR（中断嵌套层数）加1，接着将4个变量入栈，分别是：错误码、BASEPRI、IPSR（异常号）以及内核数据区的当前中断上下文压入中断栈，正好就对应于PSP\_INT\_CONTEXT\_STRUCT结构体的四个成员，**这样一来就相当于给INTERRUPT\_CONTEXT\_PTR赋了值**，压完之后会将当前的MSP存到INTERRUPT\_CONTEXT\_PTR中去，这样一来，**每次发生中断的时候INTERRUPT\_CONTEXT\_PTR都是指向的上一次中断的相关信息了**。下图显示了中断栈中这些中断上下文结构体如何存储的。  
 [![4](http://d.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=ad5ec7f1f4246b607f0ebe74dbc36b71/c83d70cf3bc79f3deb8b7d92b8a1cd11728b292d.jpg)](http://d.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=ad5ec7f1f4246b607f0ebe74dbc36b71/c83d70cf3bc79f3deb8b7d92b8a1cd11728b292d.jpg)  
 　　对于的压栈代码在dispatch.s的\_int\_kernel\_isr中，片段如下：  
 {% highlight c++ %} 
@@ -130,8 +134,8 @@ push {r0-r2}
 mrs r0, MSP                     
 str r0, [r3, #KD_INTERRUPT_CONTEXT_PTR] 
 {% endhighlight %}   
- 　　接着之前的开中断讲，我们说为什么当存在中断嵌套的时候要将kernel\_data->INTERRUPT\_CONTEXT\_PTR->ENABLE\_SR赋值给BASEPRI寄存器呢？有可能是为了防止BASEPRI被修改，因为当存在中断嵌套的时候，获取之前发生的中断的相关信息如中断号，优先级什么的就会比较困难，INTERRUPT\_CONTEXT\_PTR的作用就体现出来了，想要之前被中断的中断信息直接找它就好了，因为在发生中断的时候，我已经将这些信息都以链表的形式存好了。举个例子，在中断2的时候，发生了一个更高的中断3，在中断3中修改了BASEPRI寄存器，当我再想恢复BASEPRI的时候，不应该将它恢复成之前被中断的任务的ACTIVE\_SR，而是之前被中断3中断的中断2的BASEPRI寄存器的值，也就对应于INTERRUPT\_CONTEXT\_PTR->ENABLE\_SR了。  
-
+ 　　接着之前的开中断讲，我们说为什么当存在中断嵌套的时候要将kernel\_data->INTERRUPT\_CONTEXT\_PTR->ENABLE\_SR赋值给BASEPRI寄存器呢？有可能是为了防止BASEPRI被修改，因为当存在中断嵌套的时候，获取之前发生的中断的相关信息如中断号，优先级什么的就会比较困难，INTERRUPT\_CONTEXT\_PTR的作用就体现出来了，想要之前被中断的中断信息直接找它就好了，因为在发生中断的时候，我已经将这些信息都以链表的形式存好了。举个例子，在中断2的时候，发生了一个更高的中断3，在中断3中修改了BASEPRI寄存器，当我再想恢复BASEPRI的时候，不应该将它恢复成之前被中断的任务的ACTIVE\_SR，而是之前被中断3中断的中断2的BASEPRI寄存器的值，也就对应于INTERRUPT\_CONTEXT\_PTR->ENABLE\_SR了。
+## 小结 ##
  　　真正将任务的优先级和中断的优先级联系起来的起始就是\_int\_disable和\_int\_enable这两个函数了，通过改变BASEPRI寄存器的值从而达到运行不同任务的时候根据任务的优先级动态的修改能够响应的中断的优先级。这也就是在前一节的开头介绍的MQX五个特点时的第五个特点：任务优先级和中断优先级相联系。在我们的印象中一直有这样一个认识：当中断发生时，无论你在做什么任务，都要停下来去响应它。但是这样做会有一个缺点，就是当执行的任务优先级很高时，并不希望被低等级的中断所打断时，中断立即响应的这个优点反而变成了缺点。MQX采用的将中断优先级与任务优先级相绑定的方法使得一个高优先级的任务不会被一些低优先级的中断所打断。
 
  　　讲到现在将MQX的中断机制简要的介绍了一遍，这里将我觉得理解上可能会有问题的地方介绍了，可能还有很多地方没有讲到，毕竟MQX的中断机制还是蛮复杂的，但是复杂也使得MQX更加灵活。
