@@ -74,6 +74,6 @@ int main()
 {% endhighlight %}  
 运行环境：`ubuntu 12.04.3 gcc `  
 这个程序运行出来结果如下：
-![1](http://c.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=0c381e8d3887e9504617f76820086832/d1160924ab18972b6e3f1184e4cd7b899e510a72.jpg)
+![1](http://github-blog.qiniudn.com/2014-01-01-const-volatile-1.png-BlogPic)
 
 和我们猜想的一致。由此看出，const关键字只是在显式的代码层面帮我们检查是否修改了只读变量，并不能保证在代码执行过程中保证const修饰的变量没有被修改，也验证了第一点中const volatile修饰变量并不矛盾。

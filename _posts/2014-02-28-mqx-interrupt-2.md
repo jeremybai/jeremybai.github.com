@@ -16,13 +16,13 @@ tags: [MQX,操作系统,飞思卡尔]
 
 　　中断的优先级是由NVIC_IPR0～NVIC_IPR59这60个32位的寄存器控制的，每个32位的寄存器被分成4个8位的寄存器用来表示每个等级的中断优先级（抢占优先级和亚优先级这里不做说明，可以参考《ARM Cortex-M3权威指南》），以IPR0为例（下图是从K60芯片手册截图）：  
   
-[![1](http://b.hiphotos.bdimg.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=28616fc14dc2d562f608d0e8d72ae1d2/9a504fc2d56285357484138092ef76c6a7ef632f.jpg?referer=1153ed49be3eb1351dd0838bcde5&x=.jpg)](http://b.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=1bdb4d904890f60300b098430922886a/9a504fc2d56285357484138092ef76c6a7ef632f.jpg)
+![1](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-2-1.png-BlogPic)
 　　我们可以计算一下：0-59这60个32位寄存器可以控制的中断等级为32/8*60=240个，正好等于255-15。而前15个中断优先级（前三个不能被修改）则是由SHPR1-SHPR3（System Handler Priority Register，系统异常优先级寄存器）控制。   
 
 　　和异常相关的寄存器有：PRIMASK、FAULTMASK和BASEPRI。PRIMASK屏蔽所有外部中断，只有NMI和硬fault可以被响应；FAULTMASK和PRIMASK工作方式相同，区别在于FAULTMASK屏蔽除NMI外其他所有中断，包括硬fault;而BASEPRI代表一个阈值，只有比这个优先级高的异常才能响应（也就是值小于BASEPRI寄存器的值）。而关于单个中断的开关是由NVIC\_ISER0-7（中断使能寄存器）和NVIC\_ICER0-7（中断除能寄存器）控制的。程序里经常使用的CPSID I和CPSIE I指令设置的是PRIMASK寄存器，而CPSID F和CPSIE F设置的是FAULTMASK寄存器。  
 ## 任务优先级和中断优先级 ##
 　　在MQX中，**中断的触发会受到当前运行的任务的影响**（后面会讲到如何影响）。任务的优先级和中断的优先级是绑定的，任务的优先级范围理论上是0-65535，MQX中使用了高3位（0-7）来表示中断优先级，所以中断的优先级范围是0-7。这里还要介绍几个概念：ENABLE\_SR、TASK\_SR、ACTIVE\_SR和DISABLE\_SR。这几个变量存在于不同的结构体中，有些是全局的，有些是任务独享的，不仅和中断有关，还和任务调度有关。看代码时被这几个概念弄得“意识模糊”了。重新看代码看了好几遍才稍微清楚一点，下面这张图介绍了这几个变量的关系。    
-![2](http://g.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=641de09bb1de9c82a265fd8b5cb1bb7b/f3d3572c11dfa9ec7c5652b560d0f703918fc11c.jpg)
+![2](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-2-2.png-BlogPic)
 ### ENABLE\_SR ###
 　　ENABLE\_SR是在\_psp\_init\_readyqs(初始化就绪队列)函数中被初始化的：  
 {% highlight c++ %}
@@ -44,8 +44,8 @@ while (n--)
 }
 ...
 {% endhighlight %} 
-　　可以看出，对于不同的就绪队列，它们的ENABLE\_SR的值也是不一样的，CORTEX\_PRIOR这个宏将任务优先级加上MQX_HARDWARE_INTERRUPT_LEVEL_MAX（初始化结构体中设置为2，可以根据不同应用场合修改）作为参数计算出来（这个宏的作用就是将n+2左移5位）赋值给ENABLE\_SR。因为硬件优先级用了3位表示，也就意味着当任务的优先级大于等于6（6+2>7）的时候，已经不能对中断进行屏蔽了，所以优先级大于等于6的就绪队列的ENABLE\_SR都是0x00（之后把这个值赋给BASEPRI寄存器的时候就不能屏蔽任何中断了）。不同的n对于不同的ENABLE\_SR，当n大于等于6时便全部为0了。具体值如下所示，当MQX_HARDWARE_INTERRUPT_LEVEL_MAX被设置为2时，也就意味着任务可以响应比它优先级低1级的中断，比如说任务优先级为3，它所属的就绪队列的ENABLE\_SR等于0xA0，高3位等于5。那么当它运行的时候，中断优先级大于等于5（3+2）的中断都会被屏蔽掉，如果任务优先级为7，那么它运行的时候不能屏蔽任何中断。
-[![3](http://g.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=219434b640a7d933bba8e0779d7bea62/64380cd7912397dd8f6396a65b82b2b7d0a2877d.jpg)](http://g.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=219434b640a7d933bba8e0779d7bea62/64380cd7912397dd8f6396a65b82b2b7d0a2877d.jpg)
+　　可以看出，对于不同的就绪队列，它们的ENABLE\_SR的值也是不一样的，CORTEX\_PRIOR这个宏将任务优先级加上MQX\_HARDWARE\_INTERRUPT\_LEVEL\_MAX（初始化结构体中设置为2，可以根据不同应用场合修改）作为参数计算出来（这个宏的作用就是将n+2左移5位）赋值给ENABLE\_SR。因为硬件优先级用了3位表示，也就意味着当任务的优先级大于等于6（6+2>7）的时候，已经不能对中断进行屏蔽了，所以优先级大于等于6的就绪队列的ENABLE\_SR都是0x00（之后把这个值赋给BASEPRI寄存器的时候就不能屏蔽任何中断了）。不同的n对于不同的ENABLE\_SR，当n大于等于6时便全部为0了。具体值如下所示，当MQX\_HARDWARE\_INTERRUPT\_LEVEL\_MAX被设置为2时，也就意味着任务可以响应比它优先级低1级的中断，比如说任务优先级为3，它所属的就绪队列的ENABLE\_SR等于0xA0，高3位等于5。那么当它运行的时候，中断优先级大于等于5（3+2）的中断都会被屏蔽掉，如果任务优先级为7，那么它运行的时候不能屏蔽任何中断。
+![3](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-2-3.png-BlogPic)
 ### TASK\_SR ###
 　　每一个任务描述符结构体都有一个TASK\_SR成员，每当初始化创建任务的时候就会将就绪队列的ENABLE\_SR赋值给任务描述符的TASK\_SR，这也就意味着每个任务的TASK\_SR都是对应自己就绪队列的ENABLE\_SR。  
 
@@ -118,7 +118,7 @@ typedef struct psp_int_context_struct
 } PSP_INT_CONTEXT_STRUCT, _PTR_ PSP_INT_CONTEXT_STRUCT_PTR;
 {% endhighlight %}
 　　这些上下文结构体是由中断栈中的一个链表维护的，当中断发生时首先进入\_int\_kernel\_isr，会将IN_ISR（中断嵌套层数）加1，接着将4个变量入栈，分别是：错误码、BASEPRI、IPSR（异常号）以及内核数据区的当前中断上下文压入中断栈，正好就对应于PSP\_INT\_CONTEXT\_STRUCT结构体的四个成员，**这样一来就相当于给INTERRUPT\_CONTEXT\_PTR赋了值**，压完之后会将当前的MSP存到INTERRUPT\_CONTEXT\_PTR中去，这样一来，**每次发生中断的时候INTERRUPT\_CONTEXT\_PTR都是指向的上一次中断的相关信息了**。下图显示了中断栈中这些中断上下文结构体如何存储的。  
-[![4](http://d.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=ad5ec7f1f4246b607f0ebe74dbc36b71/c83d70cf3bc79f3deb8b7d92b8a1cd11728b292d.jpg)](http://d.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=ad5ec7f1f4246b607f0ebe74dbc36b71/c83d70cf3bc79f3deb8b7d92b8a1cd11728b292d.jpg)  
+![3](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-2-4.png-BlogPic)  
 　　对于的压栈代码在dispatch.s的\_int\_kernel\_isr中，片段如下：  
 {% highlight c++ %} 
 //按PSP_INT_CONTEXT_STRUCT结构存储上文

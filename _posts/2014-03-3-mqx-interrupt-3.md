@@ -21,12 +21,12 @@ tags: [MQX,操作系统,飞思卡尔]
 ----------
   
 　　①在进入中断服务例程后，将自动更新lr的值为EXC\_RETURN，这是一个高28位全为1，只有[3:0]位有特殊含义的值。其具体含义参见下表。该值由内核自动设置，所以一般不需要改动。  
-[![1](http://c.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=e4247b88fffaaf5180e385bbbc64af9f/4bed2e738bd4b31cad3e471585d6277f9e2ff81a.jpg) ](http://c.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=e4247b88fffaaf5180e385bbbc64af9f/4bed2e738bd4b31cad3e471585d6277f9e2ff81a.jpg)
+![1](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-3-1.png-BlogPic)
 　　合法的EXC\_RETURN值共3个，EXC\_RETURN=0xFFFF\_FFF1，返回Handler模式；EXC\_RETURN=0xFFFF\_FFF9，返回线程模式，并使用主堆栈（SP=MSP）；EXC\_RETURN=0xFFFF\_FFFD，返回线程模式，并使用进程堆栈（SP=PSP）。由EXC\_RETURN的格式可以看出， 0xFFFF\_FFF0~0xFFFF\_FFFF中的地址作为任何返回地址，所以CM4把这个地址范围设置为不可取指区。  
 　　②Cortex-M4处理器支持Handle模式和线程模式这两种操作模式以及特权级和用户级这两级特权等级，用户级有时也被称为“非特权级”。如下表所示。
-[![2](http://b.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=8ed028859f16fdfadc6cc2ea84bfb725/dbb44aed2e738bd49a23619fa38b87d6277ff91a.jpg)](http://b.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=8ed028859f16fdfadc6cc2ea84bfb725/dbb44aed2e738bd49a23619fa38b87d6277ff91a.jpg)
+![2](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-3-2.png-BlogPic)
 　　**Handle模式和线程模式的区别是Handle模式使用的MSP而线程模式下使用PSP**，这样做的目的是为了避免系统堆栈因为应用程序错误而毁坏。**特权级和用户级的区别是特权级下程序可以访问所有范围的寄存器而在用户模式下与系统控制相关的寄存器时被禁止访问的**，如程序状态寄存器（xPSR）、中断使能/除能寄存器（PRIMASK等）和控制寄存器（CONTROL）等等，合理的操作模式转换图如下：  
-[![3](http://d.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=eca54c5c7f1ed21b7dc92ae19d5ee6b5/d52a2834349b033b3084217417ce36d3d539bd14.jpg)](http://d.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=eca54c5c7f1ed21b7dc92ae19d5ee6b5/d52a2834349b033b3084217417ce36d3d539bd14.jpg)  
+![3](http://github-blog.qiniudn.com/2014-02-28-mqx-interrupt-3-3.png-BlogPic)  
 
 ----------
 
