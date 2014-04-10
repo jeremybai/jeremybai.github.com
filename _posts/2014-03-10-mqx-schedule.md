@@ -24,9 +24,9 @@ tags: [MQX,操作系统,飞思卡尔]
 
 ----------
 　　MQX中的SVC和PendSV中断的执行流程可以用下图来表示:  
-[![1](http://a.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=c2b9d78fbb12c8fcb0f3facdcc38e378/730e0cf3d7ca7bcbba746280bc096b63f624a816.jpg)](http://a.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=c2b9d78fbb12c8fcb0f3facdcc38e378/730e0cf3d7ca7bcbba746280bc096b63f624a816.jpg)
+![1](http://github-blog.qiniudn.com/2014-03-10-mqx-schedule-1.png-BlogPic)
 　　在MQX中主要的系统服务主要由执行调度（SVC\_RUN\_SCHED），任务阻塞（SVC\_TASK\_BLOCK）以及任务切换（SVC\_TASK\_SWITCH）构成，SVC\_RUN\_SCHED 用于第一次启动调度器，SVC\_TASK\_BLOCK 用于将一个任务阻塞接着再执行调度，SVC\_TASK\_SWITCH 执行正常的任务调度。从图中我们可以看出 SVC\_RUN\_SCHED 和 SVC\_TASK\_SWITCH 灰色部分执行的操作是一致的，但是区别在于这一段代码在 SVC\_RUN\_SCHED 中是在SVC的中断服务例程（\_svc\_handler）中执行的，而在SVC\_TASK\_SWITCH中是在PendSV的中断服务例程结束中做的。还有一个区别在于SVC\_TASK\_SWITCH比SVC\_RUN\_SCHED多执行了一步，将{r2-r11, lr}压入任务堆栈。这要和任务栈的结构联系一起理解了，因为任务的切换实际上就是堆栈的切换，首先我们先看下任务栈的结构：  
-[![2](http://b.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=c5ef28cb96eef01f49141cc1d0cea254/a08b87d6277f9e2f76688ca71d30e924b999f3c4.jpg)](http://b.hiphotos.bdimg.com/album/s%3D1400%3Bq%3D90/sign=c5ef28cb96eef01f49141cc1d0cea254/a08b87d6277f9e2f76688ca71d30e924b999f3c4.jpg)
+![2](http://github-blog.qiniudn.com/2014-03-10-mqx-schedule-2.png-BlogPic)
 　　当任第一次被调度的时候，我们也是需要恢复一些列的寄存器的，因为任务之前没有被调用过，所以此时在任务堆栈中并没有相关寄存器的状态，那么怎么实现任务的切换呢？MQX中已经帮我们做好了，当我们在创建任务调用\_psp\_build\_stack\_frame函数来创建任务堆栈时，设置了任务描述符的STACK\_BASE、STACK\_LIMIT和STACK\_PTR三个成员并且填充了其中的PSP\_STACK\_START\_STRUCT区域，代码如下：  
 {% highlight c++ %}
 boolean _psp_build_stack_frame
