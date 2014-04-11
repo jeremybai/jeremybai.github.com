@@ -144,3 +144,5 @@ redcarpet:
     - tables
 # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
 excerpt_separator: ""  
+
+ANNIVERSARY_PATH : /assets/anniversary
