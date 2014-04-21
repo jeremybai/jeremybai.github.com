@@ -20,7 +20,7 @@ tags: [VGA,嵌入式]
 　　1 STM32F103T8U6开发板一块（或者同类型的开发板）。我们使用的是AK-STM32-LKIT。  
 　　2 VGA母口一个（DB15）
 
-　　虽然帧缓冲区是400*200的，但是输出的分辨率却是800*600（56hz刷新频率），我们采用把横着点绘制两次，竖着的点绘制三次的方法来达到扩展分辨率的目的。  
+　　虽然帧缓冲区是400\*200的，但是输出的分辨率却是800\*600（56hz刷新频率），我们采用把横着点绘制两次，竖着的点绘制三次的方法来达到扩展分辨率的目的。  
 
 　　我们选择800×600 @ 56Hz的原因是因为像素时钟；输出分辨率使用36MHz像素时钟，周期是72MHz的倍数（STM32的频率），因为我们需要使用SPI产生像素信号，可以把STM32的频率经过SPI预分频得到18MHz的像素时钟，然后将每一个像素点绘制两次，具体方法是当在水平方向800像素点时输出一个信号像素，SPI 的 MOSI信号保持低电平或者高电平两倍的时间（相比于之前绘制一个点的时间）。  
 ![VGA output on a Samsung 17″ LCD monitor](http://github-blog.qiniudn.com/2014-04-20-VGA-output-using-arm-1.png-BlogPic)
@@ -31,18 +31,18 @@ tags: [VGA,嵌入式]
  
 __align(4) u8 fb[VID_VSIZE][VID_HSIZE+2];
 {% endhighlight %}
-　　在这一块ram中写入的数据都会被输出到屏幕，DMA被设置为自动从数据缓冲区读取数据并且输出到SPI的MOSI引脚。
- ## 水平同步 ##
-　　水平同步信号（ horizontal synchronism signal）和后延时间（back porch time）由TIM1定时器产生的通道1和2产生，TIM1定时器产生的通道1连接到PA8。
+　　在这一块ram中写入的数据都会被输出到屏幕，DMA被设置为自动从数据缓冲区读取数据并且输出到SPI的MOSI引脚。  
+## 水平同步 
+　　水平同步信号（ horizontal synchronism signal）和后延时间（back porch time）由TIM1定时器产生的通道1和2产生，TIM1定时器产生的通道1连接到PA8。  
 ![HSYNC and HSYNC+BACKPORCH signals ](http://github-blog.qiniudn.com/2014-04-20-VGA-output-using-arm-2.png-BlogPic)  
-
 　　H-SYNC也就是TIM1定时器的通道1将会产生水平同步信号给显示器。H-BACKPORCH也就是TIM1定时器的通道2,计算水平同步时间的和以及后延时间，这个定时器产生一个中断用于触发DMA开始通过SPI发送像素的请求。
 
 　　帧缓冲里面的每一行都会重复这样的过程，
 ## 垂直同步 ##
 　　TIM2定时器用于产生垂直同步信号，但是实在从机模式下。TIM2计算主机（TIM1）产生的H-SYNC脉冲数。  
 ![Timer 1 and Timer 2](http://github-blog.qiniudn.com/2014-04-20-VGA-output-using-arm-3.png-BlogPic)
-　　TIM2的通道2通过PA1输出V-SYNC信号。  
+　　TIM2的通道2通过PA1输出V-SYNC信号。 
+ 
 　　TIM2的通道3将会触发一个中断当定时器的计数器达到V-SYNC的和垂直后沿时间。这个中断会设置一个变量表明正在扫描一个有效帧并且DMA可以开始发送像素到屏幕了。
 ![VSYNC and VSYNC+BACKPORCH signals ](http://github-blog.qiniudn.com/2014-04-20-VGA-output-using-arm-4.png-BlogPic)  
 ## 像素发生器 ##
