@@ -16,7 +16,7 @@ tags: [VGA,嵌入式]
 
 　　我们选择了36-pin, 72 MHz的STM32 (STM32F103T8U6),足够用于产生黑白视频信号和点信号，同时还使用了一些定时器和SPI（在这种方式下更新帧缓冲是自动完成的），在400*200分辨率的显示器上VGA输出视频信号看起来还是比较可观的。
 
-### 　　使用的材料： ###  
+###使用的材料：  
 　　1 STM32F103T8U6开发板一块（或者同类型的开发板）。我们使用的是AK-STM32-LKIT。  
 　　2 VGA母口一个（DB15）
 
@@ -57,6 +57,8 @@ __align(4) u8 fb[VID_VSIZE][VID_HSIZE+2];
 　　VGA标准说输出信号应该在0.7V到1V之间，所以你需要在线上进行分压（串联68欧姆和33欧姆的电阻要比47pF和68欧姆的并联），我们已经测试了一系列的LCD寄存器在没有分压的情况下，工作起来还行。  
 
 　　引脚发参考AK-STM32-LKIT扩展板接插件，引脚命名对于所有的STM32都有效。根据你自己所用的STM32的手册确定使用的引脚是否一致。
+
+	我们使用绿色（VGA的引脚2）来模拟旧的那种显示效果，你可以使用其他的色彩方案使用RED/GREEN/BLUE DB15引脚，可以创建8种颜色组合。
 ![Connections](http://github-blog.qiniudn.com/2014-04-20-VGA-output-using-arm-5.png-BlogPic)  
 ![Connections](http://github-blog.qiniudn.com/2014-04-20-VGA-output-using-arm-6.png-BlogPic)  
 ## 结论 ##
