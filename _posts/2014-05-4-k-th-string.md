@@ -2,11 +2,11 @@
 layout: post
 title: "K-th-string（微软2014在线测试第二题）"
 description: ""
-categories:
+categories: 
 - c
 tags: [面试题]
 ---
-{% include JB/setup %}
+{% include JB/setup %}  
 
 题目如下：  
 Time Limit: 10000ms  
