@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ""
-description: "K-th-string（微软2014在线测试第二题）"
+title: "K-th-string（微软2014在线测试第二题）"
+description: ""
 categories:
 - c
 tags: [面试题]
