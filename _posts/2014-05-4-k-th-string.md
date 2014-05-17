@@ -3,12 +3,13 @@ layout: post
 title: "K-th-string（微软2014在线测试第二题）"
 description: ""
 categories: 
-- c
+- C
 tags: [面试题]
 ---
 {% include JB/setup %}  
 
 题目如下：  
+
 Time Limit: 10000ms  
 Case Time Limit: 1000ms  
 Memory Limit: 256MB  
