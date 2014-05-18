@@ -3,14 +3,15 @@ layout: post
 title: "Redhat非root权限源码编译安装lxr过程"
 description: ""
 categories: 
-- 翻译
-tags: [VGA,嵌入式]
+- linux
+tags: [lxr]
 ---
 {% include JB/setup %}
 
 　　最近被布置了个任务，在服务器上搭建lxr用来查看项目的源码，整整一个星期一直在折腾这个，导致我夜里做梦还梦见自己在搭环境，过程中遇到了各种各样的问题，记录下来给自己也给需要的同学看看，避免以后走弯路。
 
 ----------
+![4](http://github-blog.qiniudn.com/2014-05-5-lxr-in-server-4.png-BlogPic)
 
 　　首先介绍下lxr到底是个啥？其实我自己之前也不知道，搜了下，lxr是“the Linux Cross Referencer”的缩写，中间的“X”形象地代表了“Cross”，看名字可以大概看的出来它是干嘛的，用来查看linux源码的交叉引用的。最初只是被用于查看Linux的源代码，后来被发现也可以应用于其他的软件工程中。官方网站：[http://lxr.sourceforge.net/en/index.shtml](http://lxr.sourceforge.net/en/index.shtml)，源码下载地址：[http://sourceforge.net/projects/lxr/](http://sourceforge.net/projects/lxr/)
 
@@ -175,4 +176,4 @@ tags: [VGA,嵌入式]
 	./genxref --url=<服务器的地址+端口号>/lxr --version=v1
 　　genxref脚本就是用来对你指定的源码位置进行建立索引的，所以如果你的代码量很大的话，需要的实现可能会比较长，我第一次使用的linux-2.6.32内核源码进行编译，用了1个小时40分钟左右。其实可以自己在你指定的源码目录下建个helloworld程序用来测试一下，注意，在执行`./scripts/configure-lxr.pl -vv`命令时会让你输入源码的路径，这个路径如果没有，你要手动创建，比入我输入的路径是/path/to/lxr_src，那么在这个路径下面，你需要自己建文件夹，叫v1，然后把你的源码放进去，--url参数指定的是'host_names'加上'virtroot'，这两个参数是在lxr.conf中定义的，你打开lxr.conf文件，找到host_names这一项，添加你的服务器地址进去：  
 ![3](http://github-blog.qiniudn.com/2014-05-5-lxr-in-server-3.png-BlogPic)
-　　--version指定的是需要建立索引的版本号，我这里只建立了一个v1文件夹所以指定v1版本。最后再将custom.d/apache-lxrserver.conf这个文件拷贝到/path/to/apache/conf目录下，然后在其中的httpd.conf文件的最后加上Include conf/apache-lxrserver.conf。然后访问<服务器地址+端口号>/lxr/source/就可以看到了。
+　　--version指定的是需要建立索引的版本号，我这里只建立了一个v1文件夹所以指定v1版本。最后再将custom.d/apache-lxrserver.conf这个文件拷贝到/path/to/apache/conf目录下，然后在其中的httpd.conf文件的最后加上Include conf/apache-lxrserver.conf。然后访问<服务器地址+端口号>/lxr/source/就可以看到你自己部署的lxr了。
