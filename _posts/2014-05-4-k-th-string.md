@@ -8,37 +8,26 @@ tags: [面试题]
 ---
 {% include JB/setup %}  
 
-题目如下：  
-Time Limit: 10000ms  
-Case Time Limit: 1000ms  
-Memory Limit: 256MB  
-  
-Description
-
-　　Consider a string set that each of them consists of {0, 1} only. All strings in the set have the same number of 0s and 1s. Write a program to find and output the K-th string according to the dictionary order. If s​uch a string doesn’t exist, or the input is not valid, please output “Impossible”. For example, if we have two ‘0’s and two ‘1’s, we will have a set with 6 different strings, {0011, 0101, 0110, 1001, 1010, 1100}, and the 4th string is 1001.
-  
-Input
-
-　　The first line of the input file contains a single integer t (1 ≤ t ≤ 10000), the number of test cases, followed by the input data for each test case.
-Each test case is 3 integers separated by blank space: N, M(2 <= N + M <= 33 and N , M >= 0), K(1 <= K <= 1000000000). N stands for the number of ‘0’s, M stands for the number of ‘1’s, and K stands for the K-th of string in the set that needs to be printed as output.
-
-Output
-
-　　For each case, print exactly one line. If the string exists, please print it, otherwise print “Impossible”. 
-
-
-Sample In
-
-3  
-2 2 2  
-2 2 7  
-4 7 47  
-
-Sample Out
-
-0101  
-Impossible  
-01010111011  
+**题目如下：**  
+　　Time Limit: 10000ms  
+　　Case Time Limit: 1000ms  
+　　Memory Limit: 256MB  
+**Description**  
+　　Consider a string set that each of them consists of {0, 1} only. All strings in the set have the same number of 0s and 1s. Write a program to find and output the K-th string according to the dictionary order. If s​uch a string doesn’t exist, or the input is not valid, please output “Impossible”. For example, if we have two ‘0’s and two ‘1’s, we will have a set with 6 different strings, {0011, 0101, 0110, 1001, 1010, 1100}, and the 4th string is 1001.  
+**Input**  
+　　The first line of the input file contains a single integer t (1 ≤ t ≤ 10000), the number of test cases, followed by the input data for each test case.  
+　　Each test case is 3 integers separated by blank space: N, M(2 <= N + M <= 33 and N , M >= 0), K(1 <= K <= 1000000000). N stands for the number of ‘0’s, M stands for the number of ‘1’s, and K stands for the K-th of string in the set that needs to be printed as output.
+**Output**  
+　　For each case, print exactly one line. If the string exists, please print it, otherwise print “Impossible”.   
+**Sample In**  
+　　3  
+　　2 2 2  
+　　2 2 7  
+　　4 7 47  
+**Sample Out**  
+　　0101  
+　　Impossible  
+　　01010111011  
 
 ---
 　　题目的意思就是输入N个0，M个1，然后将它们进行组合排序，然后输出第k个数。当我看到题目最先反应到的就是找出相邻两个数之间的关系，然后从最小的数开始不停的生成下一个数，直到生成k次为止，可惜没找到什么规律，没做的出来。后来看到网上有人使用字典序生成全排列这个算法解了这道题，于是上网搜了搜什么是字典序，以及如何用字典序生成全排列。
