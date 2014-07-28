@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "K-th-string（微软2014在线测试第二题）"
+title: "K-th-string"
 description: ""
 categories: 
 - c

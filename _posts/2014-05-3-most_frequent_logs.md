@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Most_Frequent_Logs（微软2014在线测试第四题）"
+title: "Most_Frequent_Logs"
 description: ""
 categories: 
 - c

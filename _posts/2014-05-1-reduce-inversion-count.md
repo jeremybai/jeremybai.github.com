@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reduce_inversion_count（微软2014在线测试第三题）"
+title: "Reduce_inversion_count"
 description: ""
 categories: 
 - c

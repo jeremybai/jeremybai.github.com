@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "String reorder（微软2014在线测试第一题）"
+title: "String reorder"
 description: ""
 categories: 
 - c
