@@ -4,7 +4,7 @@ title: "使用36-pin的STM32输出VGA"
 description: ""
 categories: 
 - 翻译
-tags: [VGA,嵌入式]
+tags: [VGA,嵌入式,STM32]
 ---
 {% include JB/setup %}
 
