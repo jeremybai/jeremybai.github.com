@@ -74,7 +74,7 @@ const char FlashConfig[16] __attribute__ ((section(".cfmconfig"))) = {
 ![3](http://github-blog.qiniudn.com/2014-05-10-kinetis-secure-3.PNG)  
 　　J-Link的JTAG接口如下：  
 ![4](http://github-blog.qiniudn.com/2014-05-10-kinetis-secure-4.PNG)    
-　　如果你也遇到这种情况，对照两幅图接线就好了，其中OSJTAG中的EZP_CS在J-Link的JTAG转接板里面对应为nTRST，注意下就好了。
+　　如果你也遇到这种情况，对照两幅图接线就好了，其中OSJTAG中的EZP_CS在J-Link的JTAG转接板里面对应为nTRST(可以不接)，注意下就好了。
 
 
 ### 参考文献
