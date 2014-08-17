@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>{{ page.title }} &larr; {{ page.top }}</title>
+   <!-- <title>{{ page.title }} &larr; {{ page.top }}</title> -->
+   <title>{{ site.title }}&nbsp;{{ page.title }}</title>
+   <title></title>
    <meta name="author" content="{{ site.author.name }}" />
 
    <link rel="start" href="{{ HOME_PATH }}" />
@@ -33,7 +35,7 @@
   <div id="header">
     <h1>
     	<a href="{{ HOME_PATH }}" title="{{ site.title }}">{{ site.title }}</a>
-    	<span class="byline">&larr; <a href="{{ HOME_PATH }}">{{ site.author.name }}</a></span>
+    	<span class="byline">&nbsp;&nbsp;&nbsp; <a href="{{ HOME_PATH }}">{{ site.author.name }}</a></span>
     </h1>
     <ul class="nav">
       <li><a class="home" href="{{ HOME_PATH }}">Home</a></li>
