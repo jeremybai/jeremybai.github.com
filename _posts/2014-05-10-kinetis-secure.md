@@ -36,7 +36,7 @@ const VECTOR vector_entry  __vector_table[] = //@ ".intvec" =
 #define CONFIG_4		(pointer*)0xfffffffe
 {% endhighlight %} 
 　　ARM处理器默认是小端模式的，所以，我们要找的0x0\_040C也就对应着CONFIG_4的最低位的一个字节fe（0b11111110）,FTFL\_FSEC[SEC]字段等于10，也就是默认不加密，我们把它改成01，也就是fd，编译之后烧写到芯片中，复位之后芯片程序启动，如果此时我再想重新烧写程序时，就会弹出提示：  
-![2](http://github-blog.qiniudn.com/2014-05-10-kinetis-secure-2.png-BlogPic) 
+![2](http://github-blog.qiniudn.com/2014-05-10-kinetis-secure-2.png-BlogPic)  
 　　提示表明芯片以及被加密，如果想要解密的话就会触发内部flash进行mass erase，此时再烧写的话芯片内部的flash就以及被全部擦除了，你的代码也就没有了。
 
 　　如果你的工程中中断向量表中没有这些配置值的话，你可以可以自己添加，我们找到链接文件，在其中可以看到以及定义了flash配置域的地址范围：

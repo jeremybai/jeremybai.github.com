@@ -20,7 +20,7 @@ tags: [苏州大学,网关]
 　　输入你的账号和密码，点击登陆网关会发现有个post请求，这个就是我们要找的东西了！    
 ![2](http://github-blog.qiniudn.com/2014-01-20-auto-login-gateway-2.JPG-BlogPic)  
 　　点击这个post数据，找到Request Header和Form Data，这两项是我们着重关注的。    
-![3](http://github-blog.qiniudn.com/2014-01-20-auto-login-gateway-3.JPG)   
+![3](http://github-blog.qiniudn.com/2014-01-20-auto-login-gateway-3.JPG-BlogPic)   
 　　我们已经看到了看到了我们提交的post数据了，现在我们就开始构造我们的post数据，我们需要将请求的数据构造成一个字典（为什么构造成字典接下来会有介绍）。
 
     data = {
@@ -133,7 +133,7 @@ tags: [苏州大学,网关]
 　　我们除了读取配置文件的信息之外还可以像配置文件里面写信息，有兴趣的点击[这里](http://docs.python.org/2/library/configparser.html)。 
 # 4 完成  
 　　这样一个简单脚本就完成了,运行的结果如下：  
-![]({{site.img_url}}/2014-01-20/4.JPG)    
+![]({{site.img_url}}/2014-01-20/4.JPG-BlogPic)    
 　　当然还有很多容错方面的问题没有考虑到，如用户名密码错误怎么办，还有可以使用cookie来保存读取信息等等。接下里有时间慢慢改进吧。  
 # 5 下载
 　　完整代码点击[这里](https://github.com/jeremybai/AutoLoginGateWay)，如果电脑上没有装python的同学，点击这里  
