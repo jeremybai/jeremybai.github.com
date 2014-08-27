@@ -30,18 +30,20 @@ tags: [notepad++,MinGW]
 　　为了测试MinGW的安装，打开命令行，输入`gcc -v`，如果出现了gcc的版本，就表明已经安装成功了，
 [![3](http://github-blog.qiniudn.com/2014-08-5-notepad-mingw-3.png-BlogPic)  ](http://github-blog.qiniudn.com/2014-08-5-notepad-mingw-3.png)  
 ## 4 增加notepad++宏 ##
-　　接下来要做的就是在notepad++中调用MinGW了，打开notepad++，写上一个最简单的HelloWorld.c程序，
-点击菜单栏的《运行》按钮，输入命令：
+　　接下来要做的就是在notepad++中调用MinGW了，打开notepad++，写上一个最简单的HelloWorld.c程序，点击菜单栏的《运行》按钮，输入命令：
 {% highlight c++ %}
 cmd /k g++ -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe "$(FULL_CURRENT_PATH)" & PAUSE & EXIT
 {% endhighlight %}
-点击运行，此时会出现一个命令行，如果你的代码有问题，会出现错误提示，如果没有错误，就会出现“请按任意键继续”的提示。此时在点击菜单栏的《运行》按钮，输入下面的命令：
+`$(CURRENT_DIRECTORY)`代表文件所在目录的路径，这里代表C:\Users\Jeremy\Desktop\。    
+`$(NAME_PART)`表示该文件无后缀部分的文件名，这里代表HelloWorld。    
+`$(FULL_CURRENT_PATH)`代表当前完整的文件路径，这里代表C:\Users\Jeremy\Desktop\HelloWorld.c。  
+　　这个命令就是调用命令行执行g++的命令（gcc -o <输出可执行文件> <需要编译的文件>）。点击运行，此时会出现一个命令行，如果你的代码有问题，会出现错误提示，如果没有错误，就会出现“请按任意键继续”的提示。此时在点击菜单栏的《运行》按钮，输入下面的命令：
 {% highlight c++ %}
 cmd /k "$(CURRENT_DIRECTORY)\$(NAME_PART)" & PAUSE & EXIT
 {% endhighlight %}
-点击运行，如图所示此时出现的命令行就会显示你的程序的运行结果。
+　　这个命令就是调用命令行执行生成的可执行文件。点击运行，如图所示此时出现的命令行就会显示你的程序的运行结果。
 [![4](http://github-blog.qiniudn.com/2014-08-5-notepad-mingw-4.png-BlogPic) ](http://github-blog.qiniudn.com/2014-08-5-notepad-mingw-4.png)  
-你可以将这两个命令保存为快捷键（点击菜单栏的《运行》按钮，输入完命令后点击保存就可以了），这样运行起来比较方便。到此，notepad++中调用GCC编译程序就完成了。
+　　你可以将这两个命令保存为快捷键（点击菜单栏的《运行》按钮，输入完命令后点击保存就可以了），这样运行起来比较方便。到此，notepad++中调用GCC编译程序就完成了。
 ### 参考文献
 　　[1] [http://zh.wikipedia.org/wiki/MinGW ](http://zh.wikipedia.org/wiki/MinGW)
 
