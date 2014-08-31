@@ -13,7 +13,7 @@ tags: [豆瓣,API]
 　　最近在自己的网页中希望可以输入书籍的ISBN号就可以自动补全书籍的所有信息，人工输入工作量太大，就选择了调用豆瓣的API获得数据填写到表单中。做了两天才做好，网上有用的资料比较少，于是晒出自己这两天做的一些东西，希望可以帮助到需要的人，注意：APIV1.0和2.0是有区别的。在下面有提到，需要稍微留意。  
 　　下面的代码实现的功能都是将ISBN号为9787543632608（片山恭一的[《满月之夜白鲸现》](http://book.douban.com/subject/1220562/)）的图书信息返回出来，只是使用的方法不一样而已，运行的结果如下图,贴html代码似乎有点问题（已解决，参见文章末解决办法），还没找到解决办法，只能先转成图片上传，代码点击[这里](https://github.com/jeremybai/jeremybai.github.com/blob/master/images/2014-01-29/doubanapi.html)：  
 
-![]({{site.img_url}}/2014-01-29/doubanapi.jpg) 
+![](http://github-blog.qiniudn.com/doubanapi.jpg-BlogPic) 
 
 ## 1. JS调用 ##
 
