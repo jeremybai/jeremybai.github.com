@@ -15,7 +15,7 @@ tags: [notepad++,MinGW]
 ## 2 添加环境变量 ##
 　　右击计算机-->属性-->高级系统设置-->环境变量，在用户变量中添加如下几项，如果变量名已经存在就在变量值后面加上分号继续添加。如图所示：
 [![2](http://github-blog.qiniudn.com/2014-08-5-notepad-mingw-2.png-BlogPic)  ](http://github-blog.qiniudn.com/2014-08-5-notepad-mingw-2.png)  
-{% highlight c++ %}
+{% highlight text %}
 变量名：CPLUS_INCLUDE_PATH
 变量值：C:\Program Files\MinGW\include\c++\3.4.2;C:\Program Files\MinGW\include\c++\3.4.2\mingw32;C:\Program Files\MinGW\include\c++\3.4.2\backward;C:\Program Files\MinGW\include;
 变量名：path

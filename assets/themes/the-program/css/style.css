@@ -196,10 +196,6 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
-  /* 图片居中 */
-	clear: both;
-	display: block;
-	margin:auto;  
 }
 svg:not(:root) {
   overflow: hidden;
@@ -794,7 +790,6 @@ pre {
 }
 .unit-article .unit-foot .gotop {
   margin-bottom: 0;
-  text-align:right;
 }
 /* post & page */
 .layout-page .tag_box {
@@ -960,21 +955,19 @@ pre {
   }
   .the-header .unit-head .nav-global li {
     float: left;
-	margin: 20px auto;	
-/*     border: 1px solid rgba(0, 0, 0, 0.05);
-    border-width: 0 1px 0 0; */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-width: 0 1px 0 0;
   }
   .the-header .unit-head .nav-global li a,
   .the-header .unit-head .nav-global li div {
     display: block;
     padding: 26px;
     height: 26px;
-	font-size: 30px;
   }
-/*   .the-header .unit-head .nav-global li a:hover {
-    background-color: #ffffff;
-    color: #000000;
-  } */
+  .the-header .unit-head .nav-global li a:hover {
+    background-color: #fff04a;
+    color: #474747;
+  }
   .the-header .unit-head .nav-global li:nth-child(2) {
     border-width: 0 1px;
   }
@@ -1044,13 +1037,9 @@ pre {
   .the-header .unit-head .nav-global li {
     float: none;
     border: none;
-	margin: 20px auto;
   }
   .the-header .unit-head .nav-global li a,
   .the-header .unit-head .nav-global li div {
-  	text-align:center;
-	font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
-	font-size: 30px;
     display: block;
     padding: 2px 5px;
     height: auto;
@@ -1064,9 +1053,8 @@ pre {
     width: auto;
   }
   .the-header .unit-head .nav-global .logo a {
-	text-align:center;
     display: block;
-    font-size: 50px;
+    font-size: 30px;
     line-height: 52px;
     margin-bottom: 26px;
     padding-left: 5px;

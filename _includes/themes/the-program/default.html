@@ -11,9 +11,6 @@
 	<link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
 	<link href="http://feeds.feedburner.com/{{ site.author.feedbaname }}" rel="alternate" title="{{ page.title }}" type="application/atom+xml">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
 </head>
 <body>
 
@@ -22,18 +19,12 @@
 		<div class="unit-head">
 			<div class="unit-inner unit-head-inner">
 				<nav class="nav-global">
-					
-					<!-- <a href="/index.html" id="shinyashokud"></a> -->
-					<ul id=>
-						<!--<li class="logo"><a href="/">{{ site.title }}</a></li>-->
-						<li class="archive"><a class="tags-btn" href="/">主&nbsp&nbsp页</a></li>
-						<!-- <li class="archive"><a class="tags-btn" href="/archive.html">存&nbsp&nbsp档</a></li> -->
-						<!-- <li class="page"><a class="tags-btn" href="/pages.html">页&nbsp&nbsp面</a></li> -->
-						<li class="category"><a class="tags-btn" href="/categories.html">分&nbsp&nbsp类</a></li>
-						<li class="tag"><a class="tags-btn" href="/tags.html">标&nbsp&nbsp签</a></li>
-						<!-- <li class="tag"><a class="tags-btn" href="/resume.html">简&nbsp&nbsp历</a></li> -->
-						<!--<li class="forkme"><div><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=plusjade&repo=jekyll-bootstrap&type=fork&count=true"
-									allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe></div></li> -->
+					<ul>
+						<li class="logo"><a href="/">{{ site.title }}</a></li>
+						<li class="archive"><a href="/archive.html">archive</a></li>
+						<li class="page"><a href="/pages.html">pages</a></li>
+						<li class="category"><a href="/categories.html">categories</a></li>
+						<li class="tag"><a href="/tags.html">tags</a></li>
 					</ul>
 				</nav>
 			</div><!-- unit-inner -->
@@ -52,20 +43,18 @@
 		<div class="unit-foot">
 			<div class="unit-inner unit-foot-inner">
 				<div class="misc vcard">
-					<a href="/index.html" id="avatar"></a>
-					<h4>关于</h4>
+					<h4>about</h4>
 					<ul>
 						<li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
 						<li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>
-						<!--<li class="twitter"><a href="http://twitter.com/{{ site.author.twitter }}/" rel="me">twitter.com/{{ site.author.twitter }}</a></li> -->
+						<li class="twitter"><a href="http://twitter.com/{{ site.author.twitter }}/" rel="me">twitter.com/{{ site.author.twitter }}</a></li>
 						<li class="rss"><a href="http://feeds.feedburner.com/{{ site.author.feedname }}">Subscribe to RSS Feed</a></li>
 					</ul>
 				</div><!-- misc -->
-				
-				<!-- <p class="licence">
+				<p class="licence">
 					Theme: <a href="http://layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
 					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
-				</p> -->
+				</p>
 			</div><!-- unit-foot-inner -->
 		</div><!-- unit-foot -->
 	</footer>
@@ -88,6 +77,5 @@
 </script>
   
   {% include JB/analytics %}
-
 </body>
 </html>
