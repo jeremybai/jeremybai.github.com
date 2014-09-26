@@ -82,13 +82,19 @@ p {
 
 .tags-btn {
   color: #a6a6a7;
+  font-size: xx-large;
+  text-align: center;
   font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
   -webkit-transition: color .3s, background .3s;
   -moz-transition: color .3s, background .3s;
   -ms-transition: color .3s, background .3s;
   -o-transition: color .3s, background .3s;
   transition: color .3s, background .3s; }
+
   .tags-btn:hover {
-    color: #ffffff;
+    color: #ffffff;}
 	
 	
+  .about {	
+	 font-family:"微软雅黑",Consolas,"Times New Roman",Georgia,Serif;
+	 font-size:xx-large;}

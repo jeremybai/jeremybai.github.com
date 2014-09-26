@@ -30,7 +30,7 @@ tags: [MQX,操作系统,飞思卡尔]
 ...
 {% endhighlight %} 
 　　该函数将ram中KERNEL_DATA末尾一直到\_KERNEL_DATA_END的地址作为整个内存池的大小，kernel_data->INIT.END_OF_KERNEL_MEMORY是在初始化的时候由初始化结构体进行赋值，END_OF_KERNEL_MEMORY来自于链接文件中指定的地址。   
-![2](http://github-blog.qiniudn.com/2014-03-11-mqx-memory-manage-2.png-BlogPic)  
+[![2](http://github-blog.qiniudn.com/2014-03-11-mqx-memory-manage-2.png-BlogPic) ](http://github-blog.qiniudn.com/2014-03-11-mqx-memory-manage-2.png) 
 　　MQX中的可变大小的内存是以block为单位的，每一块内存（空闲或者使用）都会被加上LWMEM_BLOCK_STRUCT头，结构如下，这个头证明了这块内存的大小以及所属的内存池，其中的成员U是一个共用体，若该块内存为已使用的内存块，则该成员中的TASK_NUMBER和MEM_TYPE指明了该内存所属的任务的TASK_NUMBER以及内存类型（任务内存块还是系统内存块）。
 {% highlight c++ %}
 typedef struct lwmem_block_struct

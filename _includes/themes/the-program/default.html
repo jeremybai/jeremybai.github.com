@@ -9,6 +9,7 @@
 	<title>{{ page.title }}</title>
 	<meta name="author" content="{{ site.author.name }}">
 	<link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
+	<link href='/assets/css/style.css' rel="stylesheet" media="all">
 	<link href="http://feeds.feedburner.com/{{ site.author.feedbaname }}" rel="alternate" title="{{ page.title }}" type="application/atom+xml">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 </head>
@@ -20,11 +21,15 @@
 			<div class="unit-inner unit-head-inner">
 				<nav class="nav-global">
 					<ul>
-						<li class="logo"><a href="/">{{ site.title }}</a></li>
-						<li class="archive"><a href="/archive.html">archive</a></li>
-						<li class="page"><a href="/pages.html">pages</a></li>
-						<li class="category"><a href="/categories.html">categories</a></li>
-						<li class="tag"><a href="/tags.html">tags</a></li>
+						<a href="/"><li id="shinyashokud"></li></a>
+<!-- 						<li class="tags-btn"><a href="/">{{ site.title }}</a></li> -->
+						<li ><a class="tags-btn" href="/archive.html">归&nbsp;&nbsp;档</a></li>
+						<br/>
+						<li ><a class="tags-btn" href="/pages.html">页&nbsp;&nbsp;面</a></li>
+						<br/>
+						<li ><a class="tags-btn" href="/categories.html">分&nbsp;&nbsp;类</a></li>
+						<br/>
+						<li ><a class="tags-btn" href="/tags.html">标&nbsp;&nbsp;签</a></li>
 					</ul>
 				</nav>
 			</div><!-- unit-inner -->
@@ -43,7 +48,10 @@
 		<div class="unit-foot">
 			<div class="unit-inner unit-foot-inner">
 				<div class="misc vcard">
-					<h4>about</h4>
+					<div> 
+						<img id="avatar"/>
+					</div>
+					<p class="about">关于</p>
 					<ul>
 						<li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
 						<li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>
@@ -51,10 +59,10 @@
 						<li class="rss"><a href="http://feeds.feedburner.com/{{ site.author.feedname }}">Subscribe to RSS Feed</a></li>
 					</ul>
 				</div><!-- misc -->
-				<p class="licence">
+<!-- 				<p class="licence">
 					Theme: <a href="http://layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
 					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
-				</p>
+				</p> -->
 			</div><!-- unit-foot-inner -->
 		</div><!-- unit-foot -->
 	</footer>

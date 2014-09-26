@@ -196,6 +196,9 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
+  clear: both;
+  display: block;
+  margin:auto;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -965,8 +968,7 @@ pre {
     height: 26px;
   }
   .the-header .unit-head .nav-global li a:hover {
-    background-color: #fff04a;
-    color: #474747;
+    color: #FFFFFF;
   }
   .the-header .unit-head .nav-global li:nth-child(2) {
     border-width: 0 1px;
@@ -1029,7 +1031,7 @@ pre {
 @media only screen and (min-width: 1410px) {
   .the-header {
     float: left;
-    width: 19%;
+    width: 25%;
   }
   .the-header .unit-head {
     padding: 26px;
@@ -1067,7 +1069,7 @@ pre {
     -moz-box-shadow: #ffffff 0px 0px 2px;
     -o-box-shadow: #ffffff 0px 0px 2px;
     float: left;
-    width: 81%;
+    width: 74%;
     margin-right: -450px;
   }
   .body .unit-body {
@@ -1085,7 +1087,8 @@ pre {
     display: block;
     float: left;
     padding: 26px 0 0 26px;
-    width: 420px;
+/*     width: 320px; */
+	width: 25%;
   }
   .the-footer h4 {
     font-size: 30px;
