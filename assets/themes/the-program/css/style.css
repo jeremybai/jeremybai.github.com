@@ -404,7 +404,7 @@ Calculation should be done via  http://j.mp/rNg5uA
 No styleguide reference.
 */
 body {
-  font-family: consolas, monaco, monospace;
+  font-family: "微软雅黑"，consolas, monaco, monospace;
   font-size: 1em;
   line-height: 1.625em;
 }
