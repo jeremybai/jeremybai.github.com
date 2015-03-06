@@ -7,7 +7,8 @@ categories:
 tags: [诗歌]
 ---
 {% include JB/setup %}
-## 传奇 - 阿瑟·兰波     
+## 传奇 
+#### 阿瑟·兰波    
 ### 一    
 　　我们并不当真，当我们年方十七。   
 　　——一个美妙的晚上，去他的柠檬水和啤酒，   
@@ -50,7 +51,8 @@ tags: [诗歌]
 　　而我们散步的地方满是绿色的菩提。  
 
 ----------
-## Roman - Arthur Rimbaud ##
+## Roman ##
+#### Arthur Rimbaud ####
 ### I ###
 　　On n'est pas sérieux, quand on a dix-sept ans.  
 　　- Un beau soir, foin des bocks et de la limonade,  
