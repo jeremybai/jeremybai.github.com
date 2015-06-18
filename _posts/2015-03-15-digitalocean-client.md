@@ -10,7 +10,7 @@ tags: [DigitalOcean,VPS]
 {% include JB/setup %}
 　　对比了Linode和DigitalOcean（简称DO），选择DO了，两者的套餐如图所示。  
 [![1](http://7fv9jl.com1.z0.glb.clouddn.com/2015-03-15-digitalocean-1.png-BlogPic)](http://7fv9jl.com1.z0.glb.clouddn.com/2015-03-15-digitalocean-1.png)   
-　　选择了DO最便宜的套餐，试用了下，网上许多人推荐使用旧金山的机房，ping下来速度在400ms左右，觉得使用secureCRT登陆上去操作延迟较高，又试了下大多数人不推荐的新加坡的机房，平均174ms左右，速度还不错。下面介绍下DO的使用流程。顺便给个[邀请链接](https://www.digitalocean.com/?refcode=12e726830dc4)，感兴趣的可以从这个链接进去试试看。
+　　选择了DO最便宜的套餐，试用了下，网上许多人推荐使用旧金山的机房，ping下来速度在400ms左右，觉得使用secureCRT登陆上去操作延迟较高，又试了下大多数人不推荐的新加坡的机房，平均174ms左右，速度还不错。下面介绍下DO的使用流程。顺便给个**[邀请链接（请猛戳）](https://www.digitalocean.com/?refcode=12e726830dc4)**，通过这个链接注册使用，你好我也好^--^。
 #1 注册账号
 　　首先，你需要[注册](https://www.digitalocean.com/?refcode=12e726830dc4)一个DO的账号，注册过程就不需要多说了，邮箱啥的填写好就可以了。注册完之后还没能开始使用，你需要绑定你的信用卡或者向你的账户中充值5刀才可以创建你的VPS，可以使用Paypal绑定银联的卡进行支付，支付完成之后便可以开始创建VPS了。  
 #2 创建Droplet
