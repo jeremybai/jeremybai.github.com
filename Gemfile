@@ -8,4 +8,4 @@ gem 'github-pages', versions['github-pages']
 gem 'rake'
 
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-gem 'pygments', '0.5.0'
+#gem 'pygments', '0.5.0'
