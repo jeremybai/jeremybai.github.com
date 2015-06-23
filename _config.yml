@@ -6,7 +6,6 @@ description: > # this means to ignore newlines until "baseurl:"
 #  Hi, I’m a student from Soochow University. 
 # I love being minimal and creative.
 # baseurl: "/gaya" # the subpath of your site, e.g. /blog/
-baseurl: "/"
 #url: "http://gayan.me" # the base hostname & protocol for your site
 url: "http://jeremybai.github.io"
 logourl: /assets/images/logo.png # Site logo
@@ -46,7 +45,7 @@ markdown: rdiscount
 permalink: /blog/:year/:month/:day/:title
 
 # Pagination config
-paginate: 5
+paginate: 10
 
 # Files/Folders to be excluded from generated _site folder
 exclude: 
