@@ -7,7 +7,7 @@ categories:
 - web
 tags: [DigitalOcean,VPS]
 ---
-{% include JB/setup %}
+
 　　对比了Linode和DigitalOcean（简称DO），选择DO了，两者的套餐如图所示。  
 [![1](http://7fv9jl.com1.z0.glb.clouddn.com/2015-03-15-digitalocean-1.png-BlogPic)](http://7fv9jl.com1.z0.glb.clouddn.com/2015-03-15-digitalocean-1.png)   
 　　Linode最便宜的10刀，比较老牌，稳定性还不错，尤其是东京机房对于国内来说速度听说还不错，不过我自己没试过，比来比去还是选择了最便宜的：DO的5刀豪华套餐，试用了下，网上许多人推荐使用旧金山的机房，ping下来速度在400ms左右，觉得使用secureCRT登陆上去操作延迟较高，又试了下大多数人不推荐的新加坡的机房，平均174ms左右，速度还不错。下面介绍下DO的使用流程。顺便给个**[邀请链接（请猛戳）](https://www.digitalocean.com/?refcode=12e726830dc4)**，通过这个链接注册使用，你好我也好^--^。

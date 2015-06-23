@@ -6,7 +6,6 @@ categories:
 - C
 tags: [MQX,操作系统,飞思卡尔]
 ---
-{% include JB/setup %}
 
 ## MQX中断机制特点 ##
 　　MQX的中断机制相对来说比较复杂，采用了随时注册随时使用的机制。MQX的中断机制有如下几个特点：

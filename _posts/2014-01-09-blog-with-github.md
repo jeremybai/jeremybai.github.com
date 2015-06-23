@@ -5,8 +5,6 @@ description: ""
 category:  Jekyll
 tags: [工具使用]
 ---
-{% include JB/setup %}
-
 
 ##1 搭建环境
 操作系统：Windows 7旗舰版64位

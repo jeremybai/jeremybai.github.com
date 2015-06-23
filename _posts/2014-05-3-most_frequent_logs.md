@@ -6,7 +6,7 @@ categories:
 - c
 tags: [面试题]
 ---
-{% include JB/setup %}  
+
 
 **题目如下：**  
 　　Time Limit: 10000ms  

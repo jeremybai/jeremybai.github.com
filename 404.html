@@ -1,19 +1,11 @@
 ---
 layout: page
-title : Ooops
-header : Post Archive
-group: navigation
+title: "404 Page Not Found"
+permalink: 404.html
 ---
-{% include JB/setup %}
-	<div>
-		<img src="http://github-blog.qiniudn.com/404.png-BlogPic"  alt="" /> 
-	</div>
-    <div>
-      <article>
-        <p class="warning">
-          This is not the web page you are looking for.
-		  <br/><br/>
-		  <a href="/">Go home!</a>
-        </p>
-      </article>
-    </div>
+
+<h4>The page you were looking for is not found.</h4>
+<p>Sorry, we've misplaced that URL or it's pointing to something that doesn't 
+exist. Please 
+<a href="{{ '' | prepend: site.baseurl | prepend: site.url | append: '/' }}">
+head back home</a> to try finding it again.</p>

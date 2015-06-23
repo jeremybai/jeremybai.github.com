@@ -7,7 +7,6 @@ categories:
 - 翻译
 tags: []
 ---
-{% include JB/setup %}
 　　原文链接：http://www.pixelstech.net/article/1390482950-do-%7B-%7D-while-%280%29-in-macros  
 
 ----------

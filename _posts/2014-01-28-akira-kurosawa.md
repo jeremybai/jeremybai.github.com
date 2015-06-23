@@ -5,7 +5,6 @@ description: ""
 category: 读书
 tags: [黑泽明]
 ---
-{% include JB/setup %}
 
 　　寒假回来之前，去图书馆借了几本书回来看看。一本是菲茨杰拉德的[《了不起的盖茨比》](http://book.douban.com/subject/1008988/)，还有一本是黑泽明的自传[《蛤蟆的油》](http://book.douban.com/subject/1914636/)。想看《了不起的盖茨比》是因为前一阵子看了电影才知道的这本书。而另外一本是日本著名电影导演黑泽明老师的自传《蛤蟆的油》。  
 

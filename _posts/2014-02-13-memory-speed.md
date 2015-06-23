@@ -6,7 +6,6 @@ categories:
 - 计算机组成
 tags: []
 ---
-{% include JB/setup %}
 
 　　首先上一张图，图中各个部件的价格可能和现在差距比较大，但是我们主要关注的是访问速度。  
 ![](http://image.beekka.com/blog/201310/2013101401.png)  

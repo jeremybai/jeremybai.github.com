@@ -6,7 +6,7 @@ categories:
 - 嵌入式
 tags: [嵌入式,K60,飞思卡尔]
 ---
-{% include JB/setup %}
+
 
 　　在将芯片做成产品时我们不得不考虑的一个问题就是如何防止flash中的代码被调试器读出来，前两天看到飞思卡尔的FAE jicheng0622的一篇关于[K60加密](http://blog.chinaaet.com/detail/33837)[1]的文章，于是便自己动手验证了下。
 

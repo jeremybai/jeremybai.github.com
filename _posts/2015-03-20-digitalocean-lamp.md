@@ -8,7 +8,7 @@ categories:
 - 翻译
 tags: [DigitalOcean,VPS]
 ---
-{% include JB/setup %}  
+
 
 　　原文地址：[How To Install Linux, Apache, MySQL, PHP (LAMP) stack On CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7)。
 

@@ -6,7 +6,7 @@ categories:
 - 诗歌
 tags: [诗歌]
 ---
-{% include JB/setup %}
+
 ## 传奇 
 #### 阿瑟·兰波    
 ### 一    

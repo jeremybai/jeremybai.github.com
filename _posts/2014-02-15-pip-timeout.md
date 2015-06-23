@@ -6,7 +6,6 @@ categories:
 - python
 tags: []
 ---
-{% include JB/setup %}
 
 　　使用pip安装包的时候经常会出现超时安装不了的情况，搜了下有两种方法可以解决：
 

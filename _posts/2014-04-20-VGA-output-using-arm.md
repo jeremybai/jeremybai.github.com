@@ -6,7 +6,6 @@ categories:
 - 翻译
 tags: [VGA,嵌入式,STM32]
 ---
-{% include JB/setup %}
 
 　　手头上有个项目需要通过单片机来控制将图像显示在LCD上，在网上搜了一阵子，发现都是使用的FPGA做的，开始自己对FPGA不是很熟，一直在用的也是ARM系列的，终于让我找到一份至少现在看起来还是含金量蛮高的资料，因为是英文的，这边先将它翻译一下（[**原文链接**](http://www.artekit.eu/vga-output-using-a-36-pin-stm32/)）。  
 

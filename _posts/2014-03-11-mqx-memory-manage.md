@@ -6,7 +6,6 @@ categories:
 - C
 tags: [MQX,操作系统,飞思卡尔]
 ---
-{% include JB/setup %}
 
 ![1](http://github-blog.qiniudn.com/2014-03-11-mqx-memory-manage-1.jpg-BlogPic)
 ### 1 默认内存管理函数的不足 ###
