@@ -1,8 +1,22 @@
 ---
 layout: default
+banner_image: shinyashokudo.jpg
 ---
+  
 
+  
+  
 <div class="posts">
+
+  <!--首页图片-->
+  {% if page.banner_image %}
+  <div class="banner-image">
+	<img 
+		src="{{ "/assets/images/" | append: page.banner_image | prepend: site.baseurl | prepend: site.url }}" 
+		alt="{{ page.banner_image_alt }}">
+  </div>
+  {% endif %}  
+	  
   {% for post in paginator.posts %}
   {% assign post_url = post.url | append: '/' | replace: '//', '/' | prepend: site.baseurl | prepend: site.url | %}
   <article class="post">

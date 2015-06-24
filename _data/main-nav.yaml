@@ -1,6 +1,6 @@
-- title: "Archive"
+- title: "归档"
   href: "/archive"
-- title: "About me" # Title/Caption of the menu item
+- title: "关于" # Title/Caption of the menu item
   href: "/about" # the page where it pointed 
-#- title: "Tags"
+#- title: "标签"
 #  href: "/tags"  

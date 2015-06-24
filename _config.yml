@@ -8,7 +8,8 @@ description: > # this means to ignore newlines until "baseurl:"
 # baseurl: "/gaya" # the subpath of your site, e.g. /blog/
 baseurl: ""
 #url: "http://gayan.me" # the base hostname & protocol for your site
-url: "http://jeremybai.github.io"
+#url: "http://jeremybai.github.io"
+#url: 127.0.0.1:4000
 logourl: /assets/images/logo.png # Site logo
 author: "Jeremy Bai"
 author_thumbnail: "/assets/images/avatar.jpg" # Author avatar
@@ -46,7 +47,7 @@ markdown: rdiscount
 permalink: /blog/:year/:month/:day/:title
 
 # Pagination config
-paginate: 10
+paginate: 7
 
 # Files/Folders to be excluded from generated _site folder
 exclude: 

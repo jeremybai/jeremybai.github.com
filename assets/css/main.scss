@@ -217,9 +217,9 @@ img {
   margin-bottom: 3rem;
   border-bottom: 1px solid $gray-lighter;
   width: 100%;
-  padding: 1em 0;  
+  padding: .5em 0;  
   @include MQ(M){
-    margin-bottom: 4rem;
+    margin-bottom: 0rem;  /*header*/
     display: table;
     height: 50px;
   }
@@ -526,15 +526,16 @@ img {
  */
 
 .post, .page {
-  margin-bottom: 2em;
+  margin-top: .5em;
+  margin-bottom: 1.5em;
   padding: 1em;
   @include MQ(M) {
-    margin-bottom: 4em;
-    padding: 2em;
+    margin-bottom: 2em;
+    padding: 0em 1em 1em 1em;  /*文章标题的上右下左padding*/
   }
   background: $color-white;
   @include border-radius(.2em);
-  box-shadow: 0 0 10px rgba(#000, .1);
+  box-shadow: 0 0 10px rgba(#000, .4);
   overflow: hidden;
 }
 
@@ -552,7 +553,7 @@ img {
 /* Meta info after post-title */
 .post-meta {
   color: $gray-light;
-  padding: 1.5em 0 2em 0;
+  padding: .1em 0 .1em 0;
   letter-spacing: 1px;
   @include MQ(M) {
     font-size: 18px;    
@@ -620,10 +621,10 @@ img {
 .page .banner-image, 
 .post .banner_video, 
 .page .banner_video {
-  margin: -1em -1em 0 -1em;
+  margin: -1em -1em 0 -1em;  
   padding-bottom: 1em;
   @include MQ(M) {
-    margin: -2em -2em 0 -2em;
+    margin: -2em -1em 0 -1em;  /*banner-image的右上下左*/
   }
 }
 
