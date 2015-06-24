@@ -217,7 +217,7 @@ img {
   margin-bottom: 3rem;
   border-bottom: 1px solid $gray-lighter;
   width: 100%;
-  padding: .5em 0;  
+  padding: .1em 0;  
   @include MQ(M){
     margin-bottom: 0rem;  /*header*/
     display: table;
@@ -464,7 +464,7 @@ img {
 @include MQ(M) {
   .sidebar-toggle {
     position: fixed;
-    top:  1.5rem;
+    top:  1rem;
   }
   .sidebar-toggle:before {
     padding-bottom: .15rem;
