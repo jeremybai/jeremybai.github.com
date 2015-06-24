@@ -18,11 +18,11 @@ layout: default
     </div>
     {% endif %}
 
-    <h3 class="post-title">
+    <h2 class="post-title">
       <a href="{{ post.url | append: '/' | replace: '//', '/' | prepend: site.baseurl | prepend: site.url |  }}">
         {{ post.title }}
       </a>
-    </h3>
+    </h2>
 
     <p class="post-meta">
     {% if (post.categories.size > 0 %}
@@ -37,7 +37,7 @@ layout: default
 
     {{ post.excerpt }}
     <a href="{{ post.url | append: '/' | replace: '//', '/' | prepend: site.baseurl | prepend: site.url |  }}">
-      Continue reading »
+      继续阅读 »
     </a>
   </article>
   {% endfor %}
