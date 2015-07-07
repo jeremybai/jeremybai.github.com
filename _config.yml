@@ -1,15 +1,20 @@
 # Site settings
 title: 深夜食堂
 tagline: 谁都无法赐予你未来，因为你，就是未来
-email: jeremybai@gmail.com
+email: jeremybaiit@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
 #  Hi, I’m a student from Soochow University. 
 # I love being minimal and creative.
 # baseurl: "/gaya" # the subpath of your site, e.g. /blog/
 baseurl: ""
 #url: "http://gayan.me" # the base hostname & protocol for your site
-url: "http://jeremybai.github.io"
+#url: "http://jeremybai.github.io"
 #url: 127.0.0.1:4000
+#留空便于本地调试
+url: 
+host: 127.0.0.1
+port: 4000
+production_url : http://jeremybai.github.io
 logourl: /assets/images/logo.png # Site logo
 author: "Jeremy Bai"
 author_thumbnail: "/assets/images/avatar.jpg" # Author avatar
@@ -63,6 +68,6 @@ exclude:
 sass:
   sass_dir: assets/css/_sass
   style: :compressed
-  
+
 # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
 excerpt_separator: ""
