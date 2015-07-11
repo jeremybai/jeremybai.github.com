@@ -223,3 +223,11 @@ tags: [工具使用]
     #comment
     ```
 　　如果使用的是redcarpet解释器，上面的那种格式的代码高亮能够被识别，但是有个缺点，不能识别粗体。
+### 5.6 设置用户名和邮箱
+　　当你提交你的修改之后在你的github上并没有看到你的提交纪录时，有可能你没有设置你本地的用户名，使用下面的命令进行设置。  
+
+	$ git config --global user.name author #将用户名设为author
+	$ git config --global user.email author@corpmail.com #将用户邮箱设为author@corpmail.com
+　　git-config命令带--global选项是对所有用户信息进行配置，默认只针对对当前用户。 git-config中写入配置信息。 如果git-config加了--global选项，配置信息就会写入到~/.gitconfig文件中。 因为你可能用不同的身份参与不同的项目，而多个项目都用git管理，所以建议不用global配置。  
+
+	git config -–list              #查看用户信息　　
