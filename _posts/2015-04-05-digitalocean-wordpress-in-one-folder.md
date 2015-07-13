@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DigitalOcean使用小记--如何将wordpress置于独立文件夹"
+title: "DigitalOcean使用小记--将wordpress置于独立文件夹"
 description: ""
 categories: 
 - linux
