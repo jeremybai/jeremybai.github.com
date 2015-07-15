@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DigitalOcean使用小记--ftp使用"
+title: "DigitalOcean使用小记--ftp使用及问题"
 description: ""
 categories: 
 - linux
@@ -44,14 +44,24 @@ tags: [DigitalOcean,VPS]
 	# 停止vsftpd服务：
 	service vsftpd stop
 	
-##PS: 以root权限登陆vsftpd
+##问题1: 以root权限登陆vsftpd
 　　如果你想以root权限登陆vsftp的话，还需要做如下设置，因为vsftpd默认是不允许root用户登录的：  
 
 	1、注释/etc/vsftpd.ftpusers中的root
 	2、注释/etc/vsftpd.user_list中的root
 	3、更改/etc/vsftpd/vsftp.conf中的userlist_enabel=NO
 	4、service vsftpd restart
-　　
+##问题2: WordPress更新主题时ftp连接不上
+　　问题描述：
 
+	要执行请求的操作，WordPress需要访问您网页服务器的权限。 请输入您的FTP登录凭据以继续。 如果您忘记了您的登录凭据（如用户名、密码），请联系您的网站托管商。
+　　解决方法：在wp-config.php里加入下面代码:
 
+	define("FS_METHOD", "direct");
+	define("FS_CHMOD_DIR", 0777);
+	define("FS_CHMOD_FILE", 0777);
+##问题3: WordPress安装插件时提示 “无法创建目录”
+　　WordPress安装插件时提示“无法创建目录”，这个是由于目录的权限设置导致的，一般情况下可以直接给目录/wp-content目录增加777权限，目录地址改为你的wordpress安装地址下的wp-content文件夹：  
 
+	chmod -R 777 ./wordpress/wp-content
+　　改完权限之后就可以安装插件或者主题了。
