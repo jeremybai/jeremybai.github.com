@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DigitalOcean使用小记--ftp使用及问题"
+title: "DigitalOcean使用小记--WordPress使用ftp及问题"
 description: ""
 categories: 
 - linux
@@ -9,7 +9,7 @@ tags: [DigitalOcean,VPS]
 ---
 
 
-　　在使用VPS时需要通过FTP登录至服务器，vsftpd是一个UNIX类操作系统上运行的服务器，是“very secure FTP daemon”的缩写，这里简要介绍在CentOS 7下安装vsftpd以及简单的配置登陆过程。  
+　　在使用WordPress时需要通过FTP登录至服务器安装主题或者插件，vsftpd是一个UNIX类操作系统上运行的服务器，是“very secure FTP daemon”的缩写，这里简要介绍在CentOS 7下安装vsftpd以及简单的配置登陆过程。  
 #1 安装vsftpd
 　　使用下面的命令查看机器上是否已经安装了vsftpd：  
 
