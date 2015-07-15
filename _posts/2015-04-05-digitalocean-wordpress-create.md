@@ -31,7 +31,7 @@ tags: [DigitalOcean,VPS,WordPress]
 
 	exit
 　　此时又回到了你的ssh命令提示符了。  
-##步骤2 安装WordPress
+##步骤2 安装配置WordPress
 　　载安装WordPress之前我们需要安装一个php的模块：`php-gd`，它让WordPress可以修改图片的尺寸用于创建缩略图：  
 
 	sudo yum install php-gd
@@ -43,15 +43,10 @@ tags: [DigitalOcean,VPS,WordPress]
 	cd ~
 	wget http://wordpress.org/latest.tar.gz
 	tar xzvf latest.tar.gz
-　　接着将解压下来的文件拷贝至Apache的文档根目录（`/var/www/html/`）： 
- 
-	sudo cp -r ~/wordpress/* /var/www/html　　
-　　
-##步骤3 WordPress配置
-　　安装包中给出了一个配置文件（wp-config-sample.php），将其复制改名为：`wp-config.php`，并且打开它进行修改：  
+　　解压之后的wordpress文件夹中给出了一个配置文件（wp-config-sample.php），将其复制改名为：`wp-config.php`，并且打开它进行修改：  
 
 	cp ~/wordpress/wp-config-sample.php ~/wordpress/wp-config.php
-	vi ~/wordpress/wp-config.php
+	nano ~/wordpress/wp-config.php
 　　将下面的DB_NAME，DB_USER和DB_PASSWORD修改为你之前设置的名称：  
 
 	// ** MySQL settings - You can get this info from your web host ** //
@@ -63,4 +58,8 @@ tags: [DigitalOcean,VPS,WordPress]
 
 	/** MySQL database password */
 	define('DB_PASSWORD', 'password');
-　　修改完成之后便可以打开网页（example.com/wp-admin/install.php）填写好一些基本信息访问你的服务器地址就可以看到搭建好的WordPress了。
+	
+　　接着将解压下来的文件拷贝至Apache的文档根目录（`/var/www/html/`）： 
+ 
+	sudo cp -r ~/wordpress/* /var/www/html　　
+　　拷贝完成之后便可以打开网页（example.com/wp-admin/install.php）填写好一些基本信息访问你的服务器地址就可以看到搭建好的WordPress了。
