@@ -55,13 +55,6 @@ tags: [DigitalOcean,VPS]
 　　问题描述：
 
 	要执行请求的操作，WordPress需要访问您网页服务器的权限。 请输入您的FTP登录凭据以继续。 如果您忘记了您的登录凭据（如用户名、密码），请联系您的网站托管商。
-　　解决方法：在wp-config.php里加入下面代码:
+　　解决方法：这是因为你的网站根目录下的WordPress相关文件的属主不是Apache，所以Apache不能对其中的文件或者文件夹做出改动，通过chown命令将其属主改为apache，用户组也改为apache，就可以进行安装主题或者插件等操作了，直接将这些文件的权限改为777也是可以的，但是并没有这种方法安全。  
 
-	define("FS_METHOD", "direct");
-	define("FS_CHMOD_DIR", 0777);
-	define("FS_CHMOD_FILE", 0777);
-##问题3: WordPress安装插件时提示 “无法创建目录”
-　　WordPress安装插件时提示“无法创建目录”，这个是由于目录的权限设置导致的，一般情况下可以直接给目录/wp-content目录增加777权限，目录地址改为你的wordpress安装地址下的wp-content文件夹：  
-
-	chmod -R 777 ./wordpress/wp-content
-　　改完权限之后就可以安装插件或者主题了。
+	sudo chown -R apache:apache /var/www/html/*
