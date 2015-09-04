@@ -37,7 +37,7 @@ tags: [工具使用]
 　　耐心等待一段时间就可以了。安装成功后输入命令：
 
     jekyll -v
-　　和上面一样，显示版本号就表明安装成功了。这个时候，我们的准备工作已经完成，接下来我们会在三分钟制备搭建一个bootstrap风格的个人博客。
+　　和上面一样，显示版本号就表明安装成功了。这个时候，我们的准备工作已经完成，接下来我们会在三分钟制备搭建一个bootstrap风格的个人博客，如果安装中出现问题可以参考最后一节，给出了一些常见的问题和解决方法。  
 ##3 搭建博客
 　　我们使用github创建页面时，有两种方式，一种是用户或者组织的页面，另外一种就是项目页面。
 ###3.1 创建新的代码库。 
@@ -230,4 +230,46 @@ tags: [工具使用]
 	$ git config --global user.email author@corpmail.com #将用户邮箱设为author@corpmail.com
 　　git-config命令带--global选项是对所有用户信息进行配置，默认只针对对当前用户。 git-config中写入配置信息。 如果git-config加了--global选项，配置信息就会写入到~/.gitconfig文件中。 因为你可能用不同的身份参与不同的项目，而多个项目都用git管理，所以建议不用global配置。  
 
-	git config -–list              #查看用户信息　　
+	git config -–list              #查看用户信息
+### 5.7 gem安装失败
+　　如果你在使用gem准备安装jekyll时发现错误：  
+
+	ERROR:  While executing gem ... (Gem::RemoteFetcher::FetchError)
+	    Errno::ECONNRESET: An existing connection was forcibly closed by the remote
+	host. - SSL_connect (https://api.rubygems.org/specs.4.8.gz)
+　　这个错误是因为gem使用的默认的源中有些地址是被屏蔽掉了的，所以你无法从[https://rubygems.org/](https://rubygems.org/)获取相关的包，解决方法就是替换掉原有的源，替换方法如下： 
+
+	$ gem sources --remove https://rubygems.org/
+	$ gem sources -a https://ruby.taobao.org/
+	$ gem sources -l
+	*** CURRENT SOURCES ***
+	
+	https://ruby.taobao.org
+	# 请确保只有 ruby.taobao.org
+### 5.8 DevKit安装
+　　windows下安装完ruby之后，使用gem安装jekyll时可能还会出现这样的错误： 
+ 
+	Please update your PATH to include build tools or download the DevKit
+	from 'http://rubyinstaller.org/downloads' and follow the instructions
+	at 'http://github.com/oneclick/rubyinstaller/wiki/Development-Kit'
+　　这是因为没有安装DevKit。DevKit是windows平台下编译和使用本地C/C++扩展包的工具，用来模拟Linux平台下的make, gcc等工具进行编译。下载与你ruby相匹配的[DevKit](http://rubyinstaller.org/downloads/)，指定解压路径，路径中不能有空格。如C:\DevKit，在这个路径下打开命令行：  
+
+	ruby dk.rb init
+	# 查找RubyInstaller安装的位置，并且生成config.yml，
+	# 如果机器上有多个ruby版本，而且列出的Ruby与你希望的的不符，可以手动修改
+	ruby dk.rb review 
+	ruby dk.rb install
+　　再次使用gem安装jekyll即可。
+### 5.9 找不到mentos.py文件
+　　在执行`jekyll build`时出现的错误：  
+
+	Liquid Exception: No such file or directory - python c:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/pygments.rb-0.4.2/lib/pygments/mentos.py in 2014-01-01-const-volatile.md
+　　这个错误是由于pygments没有被正确安装或者python未被添加到系统路径。使用目录`gem list`查看pygments是否被安装成功，因为pygments依赖于python，所以还需要安装python，前往[官网](https://www.python.org/downloads/)下载python进行安装，安装时选择将python添加到系统路径中，如果没有添加的话在安装完成之后自己手动添加，添加完成之后重启电脑，在命令行中输入`python --version`检查路径添加是否成功。成功之后再次执行`jekyll build`错误就没有了。  
+### 5.10 找不到mentos.py文件  
+　　使用bundle时出现错误信息：
+
+	[!] There was an error parsing `Gemfile`: SSL_connect returned=1 errno=0 state=S SLv3 read server certificate B: certificate verify failed. Bundler cannot continue.
+　　这个问题是由于验证失败导致的，可以参考[https://gist.github.com/fnichol/867550](https://gist.github.com/fnichol/867550)这篇文章，我使用的是第二种方法，下载[cacert.pem](http://curl.haxx.se/ca/cacert.pem)文件并且保存，保存的位置由你决定，我保存在了ruby的安装位置，接着在命令行输入让ruby意识到这个证书文件的存在:
+
+	set SSL_CERT_FILE=C:\RailsInstaller\cacert.pem
+　　为了不用每一次都输入这个命令，添加环境变量SSL_CERT_FILE，值为C:\RailsInstaller\cacert.pem。
