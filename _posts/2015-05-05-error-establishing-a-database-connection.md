@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DigitalOcean使用小记--Error Establishing a Database Connection错误"
+title: "DigitalOcean使用小记--Error Establishing a Database Connection（建立数据库连接时出错）错误的一些解决方法"
 description: ""
 categories: 
 - linux
@@ -13,7 +13,7 @@ tags: [DigitalOcean,VPS,WordPress]
 　　**原文地址**：[http://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/ ](http://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/)  
 
 ----------
-　　
+
 　　如果你一直在浏览网页，那么你一定看到过这个错误不止一次。有许多原有可能会导致Error Establishing a Database Connection这个错误。作为一个WordPress初学者，这个错误较长会让使用者手足无措，尤其是当你什么都没有做的情况下出现这个错误。我们在昨天在自己的网站上遇到了这个问题时花费了20几分钟解决它，在解决的过程中发现没有一篇文章包含了所有可能出现的原因。所以我们写了这篇文章将大部分可能的导致Error Establishing a Database Connection这个错误的原因都列出来。  
 　　**PS：在你做任何的数据库改动之前，确保先进行备份。**  
 ##为什么会出现这个问题？
@@ -26,8 +26,8 @@ tags: [DigitalOcean,VPS,WordPress]
 　　增加配置之后打开下面这个页面查看设置：  
 
 	http://www.yoursite.com/wp-admin/maint/repair.php
-　　[![1](http://7fv9jl.com1.z0.glb.clouddn.com/2015-05-05-error-establishing-a-database-connection-1.gif) ](http://7fv9jl.com1.z0.glb.clouddn.com/2015-05-05-error-establishing-a-database-connection-1.gif)
-　　打开这个网页进行修复是不需要用户进登录的，因为在修复一个崩溃的数据库时用户很有可能不能登录。所以当你修复优化完数据库之后却好将这行配置从wp-config.php中移除。 
+　　[![1](http://7fv9jl.com1.z0.glb.clouddn.com/2015-05-05-error-establishing-a-database-connection-1.gif) ](http://7fv9jl.com1.z0.glb.clouddn.com/2015-05-05-error-establishing-a-database-connection-1.gif)  
+　　打开这个网页进行修复是不需要用户进登录的，因为在修复一个崩溃的数据库时用户很有可能不能登录。所以当你修复优化完数据库之后却好将这行配置从wp-config.php中移除。   
 　　如何修复之后还有问题或者在修复过程中出现问题那么你还需要继续阅读查看其它办法。  
 ##检查WP-Config文件 
 　　WP-Config.php可能是你在WordPress安装过程中遇到的最重要的配置文件。连接数据库的相关配置都在这个文件中，如果你修改过数据库root密码或者数据库用户密码，那么你需要在这个文件中也需要进行相应的修改。第一件事你需要检查wp-config.php中的配置是否一致。  
@@ -43,7 +43,7 @@ tags: [DigitalOcean,VPS,WordPress]
 　　在线的虚拟主机服务的IP是会变化的，所以当你的IP改变时记得修改。  
 　　当你检查完所有的文件配置是正确的（拼写也要检查），那么问题应该就是出在服务器端了。  
 ##检查Web Host（MySQL Server）
-　　当你的网站连接太多时也会看到这个错误，可能有是由于你的主机服务器不能处理负载（尤其是当你使用共享主机的时候），你的网站会变得很慢而且有的用户甚至会出现这个错误。所以最好的方法就是联系你的主机提供商咨询下你的MySQL服务器是否响应。 
+　　当你的网站连接太多时也会看到这个错误，可能有是由于你的主机服务器不能处理负载（尤其是当你使用共享主机的时候），你的网站会变得很慢而且有的用户甚至会出现这个错误。所以最好的方法就是联系你的主机提供商咨询下你的MySQL服务器是否响应。  
 　　如果想自己测试你的MySQL服务器是否运行，可以测试这个服务器上的其他网站是否存在这个问题，如果其他网站也出现这个问题，那么有可能就是你的MySQL服务器出了问题；如果这个服务器上没有其他网站可以测试，打开cPanel并且打开phpMyAdmin连接数据库，如果你能连接上的话那你就需要验证你的数据库用户是否拥有足够的权限。创建一个新的文件叫做testconnection.php并且将下列代码粘贴上去：  
 
 	<?php
