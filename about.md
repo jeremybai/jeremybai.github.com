@@ -13,8 +13,7 @@ on [Jekyll][jekyll].
 
 ### Contact me
 
-Say `Hello` at jeremybaiit@gmail.com or find
-me on
+Say `Hello` at jeremybaiit@gmail.com.
 
 ---
 
