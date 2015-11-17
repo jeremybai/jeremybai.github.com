@@ -65,4 +65,39 @@ if __name__ == '__main__':
 　　 
 
 ----------
-　　除了使用threading+Queue的方法实现多线程，还有种更简单的方法：map，使用map可以通过几行代码就实现并行化。感兴趣的同学可以参考[《一行 Python 实现并行化 -- 日常多线程操作的新思路》](http://segmentfault.com/a/1190000000414339)这篇文章  
+　　除了使用threading+Queue的方法实现多线程，还有种更简单的方法：map，使用map可以通过几行代码就实现并行化。感兴趣的同学可以参考[《一行 Python 实现并行化 -- 日常多线程操作的新思路》](http://segmentfault.com/a/1190000000414339)这篇文章。  
+　　map使用起来相当简单，下面的例子介绍下map的简单使用，首先通过ThreadPool创建线程池，它决定了你的线程池中线程的数目，默认值为当前机器CPU的核数，通过map函数就可以将参数序列中的参数分配到每个线程对应的执行函数中去，map函数的返回值是一个列表，记录了每个线程执行完任务函数返回的结果。    
+{% highlight python %}
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import time
+import sys
+from multiprocessing.dummy import Pool as ThreadPool
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+#具体的处理函数，负责处理单个任务
+def do_somthing_using(arguments):
+    print arguments
+    time.sleep(1)
+    return arguments
+
+def run():
+    # 创建线程池
+    pool = ThreadPool(5)
+    # 将第list中的每个元素作为参数传递到do_somthing_using方法中
+    # 并将所有结果保存到results这一列表中。
+    list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    results = pool.map(do_somthing_using, list)
+    # 调用join之前先调用close函数，否则会出错
+    # 执行完close后不会有新的进程加入到pool,join函数等待所有线程结束
+    pool.close()
+    pool.join()
+
+if __name__ == '__main__':
+    start = time.clock()
+    run()
+    end = time.clock()
+    print "共花费: %f s" % (end - start)
+{% endhighlight %} 
