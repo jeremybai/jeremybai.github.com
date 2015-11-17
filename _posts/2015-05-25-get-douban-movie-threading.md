@@ -65,8 +65,9 @@ if __name__ == '__main__':
 　　 
 
 ----------
-　　除了使用threading+Queue的方法实现多线程，还有种更简单的方法：map，使用map可以通过几行代码就实现并行化。感兴趣的同学可以参考[《一行 Python 实现并行化 -- 日常多线程操作的新思路》](http://segmentfault.com/a/1190000000414339)这篇文章。  
-　　map使用起来相当简单，下面的例子介绍下map的简单使用，首先通过ThreadPool创建线程池，它决定了你的线程池中线程的数目，默认值为当前机器CPU的核数，通过map函数就可以将参数序列中的参数分配到每个线程对应的执行函数中去，map函数的返回值是一个列表，记录了每个线程执行完任务函数返回的结果。    
+　　除了使用threading+Queue的方法实现多线程，还有种更简单的方法：map，使用map可以通过几行代码就实现并行化。感兴趣的同学可以参考[《一行 Python 实现并行化 -- 日常多线程操作的新思路》](http://segmentfault.com/a/1190000000414339)这篇文章。    
+　　在Python中有个两个库包含了map函数： multiprocessing和它的子库multiprocessing.dummy。dummy是multiprocessing模块的完整克隆，唯一的不同在于multiprocessing作用于进程，而dummy模块作用于线程（因此也包括了Python所有常见的多线程限制），所以替换使用这两个库非常容易。  
+　　map使用起来相当简单，下面的例子介绍下map的简单使用，首先通过ThreadPool创建线程池，它决定了你的线程池中线程的数目，默认值为当前机器CPU的核数，通过map函数就可以将参数序列中的参数分配到每个线程对应的执行函数中去，map函数的返回值是一个列表，记录了每个线程执行完任务函数返回的结果。      
 {% highlight python %}
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
