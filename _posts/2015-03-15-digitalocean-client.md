@@ -92,4 +92,10 @@ tags: [DigitalOcean,VPS]
 　　接着点击chrome地址栏右侧的Proxy SwitchySharp插件图标，如下图所示，选择自动切换模式，这样使得我们上国内网站时不走代理，不影响国内网站的浏览。  
 [![6](http://7fv9jl.com1.z0.glb.clouddn.com/2015-03-15-digitalocean-6.png-BlogPic)](http://7fv9jl.com1.z0.glb.clouddn.com/2015-03-15-digitalocean-6.png)  　　
 #4 完成　　
-　　这样我们就通过shadowsocks使用自己的VPS进行科学上网了！最后提醒下当发现不能科学上网时，确定客户端已经设置完毕切且没有问题时，可以先将浏览器设置为全局代理模式，看是否可以工作，如果可以，那边是浏览器插件设置的问题，否则检查客户端中填写的信息与VPS上的配置信息是否一致。
+　　这样我们就通过shadowsocks使用自己的VPS进行科学上网了！最后提醒下当发现不能科学上网时，确定客户端已经设置完毕切且没有问题时，可以先将浏览器设置为全局代理模式，看是否可以工作，如果可以，那边是浏览器插件设置的问题，否则检查客户端中填写的信息与VPS上的配置信息是否一致。  
+
+----------
+　　shadowsocks无法使用时，右击托盘shadowsocks图标，选择“显示日志”，如果出现下面的错误：  
+
+	failed to recv data in handshakeReceive2Callback
+　　这个问题可能是由于你电脑上安装的迅雷的原因，`右击“我的电脑”——管理——服务和应用程序——服务`，在服务中找到xlserviceplatform把它禁用就可以了。  
