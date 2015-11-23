@@ -66,8 +66,18 @@ t1 = time.time()
 print "time.time()", t1 - t0
 {% endhighlight %} 
 　　在`Windows系统`中上述的方法都可以获得procedure()运行的时间，如果你想获取程序的CPU时间，第一次调用clock()的返回值就是；如果在`unix系统`中，两次调用clock()的结果都是一样的，所以第一种方法是没有效果的，如果你想获取程序的CPU时间，无论哪一次调用clock()的返回值都是CPU时间。   
-
+　　在Python中有哥模块专门用于统计程序运行时间的模块：`timeit`。在timeit的[源代码](http://svn.python.org/projects/python/branches/release26-maint/Lib/timeit.py)中针对不同的系统做了不同的定义：  
+{% highlight python %}
+if sys.platform == "win32":
+    # On Windows, the best timer is time.clock()
+    default_timer = time.clock
+else:
+    # On most other platforms the best timer is time.time()
+    default_timer = time.time
+{% endhighlight %} 
+　　**`从中我们可以看出在Windows中最好使用clock()函数，而在其他平台上最好使用time.time()。`**程序的执行时间总是和运行环境相关的，因为程序不可能运行在一个拥有无限的资源的环境中，而且在测量运行时间时，多次测量取平均值要比只运行一次得到的结果要更好。      
 ###参考文献：
 [1] [Python time模块文档](https://docs.python.org/2/library/time.html#time.clock)  
 [2] [Difference between CPU time and wall time](https://service.futurequest.net/index.php?/Knowledgebase/Article/View/407)  
-[3] [Measure Time in Python – time.time() vs time.clock()](http://pythoncentral.io/measure-time-in-python-time-time-vs-time-clock/)
+[3] [Measure Time in Python – time.time() vs time.clock()](http://pythoncentral.io/measure-time-in-python-time-time-vs-time-clock/)  
+[4] [Python：time.clock() vs. time.time()](http://www.cnblogs.com/bettermanlu/archive/2011/09/19/2181529.html)  
