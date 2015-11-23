@@ -65,4 +65,9 @@ procedure()
 t1 = time.time()
 print "time.time()", t1 - t0
 {% endhighlight %} 
-　　在`Windows系统`中上述的方法都可以获得procedure()运行的时间，如果你想获取程序的CPU时间，第一次调用clock()的返回值就是；如果在`unix系统`中，两次调用clock()的结果都是一样的，所以第一种方法是没有效果的，如果你想获取程序的CPU时间，无论哪一次调用clock()的返回值都是CPU时间。  
+　　在`Windows系统`中上述的方法都可以获得procedure()运行的时间，如果你想获取程序的CPU时间，第一次调用clock()的返回值就是；如果在`unix系统`中，两次调用clock()的结果都是一样的，所以第一种方法是没有效果的，如果你想获取程序的CPU时间，无论哪一次调用clock()的返回值都是CPU时间。   
+
+###参考文献：
+[1] [Python time模块文档](https://docs.python.org/2/library/time.html#time.clock)  
+[2] [Difference between CPU time and wall time](https://service.futurequest.net/index.php?/Knowledgebase/Article/View/407)  
+[3] [Measure Time in Python – time.time() vs time.clock()](http://pythoncentral.io/measure-time-in-python-time-time-vs-time-clock/)
