@@ -1,22 +1,12 @@
 ---
 layout: page
-title: About me
-permalink: /about/
-banner_image: sample-banner-image-3.jpg
-banner_image_alt: About me
+title: "关于我"
+description: "information about me"
+group: navigation
+comments: false
 ---
+{% include JB/setup %}
 
-Hi, I am Jeremy Bai. I am a student from Soochow University.
+## 个人简介
 
-I prefer to serve with C and Python and also love to work 
-on [Jekyll][jekyll].
-
-### Contact me
-
-Say `Hello` at jeremybaiit@gmail.com.
-
----
-
-{% include social.html %}
-
-[jekyll]: http://jekyllrb.com
+hi，我来自苏州大学计算机科学与技术学院，研究方向为嵌入式系统，平时喜欢使用C和Python做自己感兴趣的事。

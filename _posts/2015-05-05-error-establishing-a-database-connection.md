@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "DigitalOcean使用小记--Error Establishing a Database Connection（建立数据库连接时出错）错误的一些解决方法"
-description: ""
+title: "DigitalOcean使用小记--如何解决“建立数据库连接时出错”"
+description: "Error Establishing a Database Connection"
 categories: 
 - linux
 - web
@@ -10,7 +10,7 @@ categories:
 tags: [DigitalOcean,VPS,WordPress]
 ---
 
-　　**原文地址**：[http://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/ ](http://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/)  
+　　原文地址：[http://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/ ](http://www.wpbeginner.com/wp-tutorials/how-to-fix-the-error-establishing-a-database-connection-in-wordpress/)  
 
 ----------
 

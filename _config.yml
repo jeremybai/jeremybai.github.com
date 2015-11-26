@@ -1,73 +1,145 @@
-# Site settings
-title: 深夜食堂
-tagline: 谁都无法赐予你未来，因为你，就是未来
-email: jeremybaiit@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-#  Hi, I’m a student from Soochow University. 
-# I love being minimal and creative.
-# baseurl: "/gaya" # the subpath of your site, e.g. /blog/
-baseurl: ""
-#url: "http://gayan.me" # the base hostname & protocol for your site
-#url: "http://jeremybai.github.io"
-#url: 127.0.0.1:4000
-#留空便于本地调试
-url: 
-host: 127.0.0.1
-port: 4000
-production_url : http://jeremybai.github.io
-logourl: /assets/images/logo.png # Site logo
-author: "Jeremy Bai"
-author_thumbnail: "/assets/images/avatar.jpg" # Author avatar
-# Theme customization - please change from the defaults!
-theme:
-  # Color for sidebar bar, links, etc
-  highlight_color: "#205081" #205081" # "#272935"
-  # Social media links, leave blank to ignore
-  social: 
-    github: jeremybai
-    twitter: JeremyBai
-    #facebook: jeremybai
-    #gplus: +jeremybai
-    # dribble: jeremybai
-    # pinterest: jeremybai
-
-  # Enable share buttons on post footer
-  show_share_buttons: true
-
-  # Show author picure, name and social links on post footer
-  show_author_info: true
-
-  # Disqus comments manager - shortname
-  # disqus_shortname: gaya-webcreate
-
-  # Google Analytics/Webmaster key, leave blank to ignore
-  google_analytics_key: 
-  google_webmaster_key: 
-
-# Build settings
-markdown: rdiscount
-
-# Permalinks
-#permalink:        pretty
+# This is the default format. 
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+# permalink: /:categories/:title.html
 permalink: /blog/:year/:month/:day/:title
 
-# Pagination config
-paginate: 7
+safe: false
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+paginate: 10
+encoding: utf-8
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data", "tables"]
 
-# Files/Folders to be excluded from generated _site folder
-exclude: 
-  - CNAME
-  - Gemfile
-  - Rakefile
-  - README.md
-  - .gitignore
-  - .sass-cache
-  - Gemfile.lock
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+title : Jeremy's blog
+tagline: 
+author :
+  name : jeremybai
+  email : jeremybaiit@gmail.com
+  github : jeremybai
+  twitter : jeremybai
+# weibo : liberize
+# v2ex : liberize
+# googleplus : 118314345733357791088
+# feedburner : feedname
 
-# Sass conversion configs
-sass:
-  sass_dir: assets/css/_sass
-  style: :compressed
+# The production_url is only used when full-domain names are needed
+# such as sitemap.txt 
+# Most places will/should use BASE_PATH to make the urls
+#
+# If you have set a CNAME (pages.github.com) set your custom domain here.
+# Else if you are pushing to username.github.io, replace with your username.
+# Finally if you are pushing to a GitHub project page, include the project name at the end.
+#
+production_url : http://jeremybai.github.io
+# cdn_url : http://liberize.u.qiniudn.com
 
-# Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
-excerpt_separator: ""
+# All Jekyll-Bootstrap specific configurations are namespaced into this hash
+#
+JB :
+  version : 0.3.0
+
+  # All links will be namespaced by BASE_PATH if defined.
+  # Links in your website should always be prefixed with {{BASE_PATH}}
+  # however this value will be dynamically changed depending on your deployment situation.
+  #
+  # CNAME (http://yourcustomdomain.com)
+  #   DO NOT SET BASE_PATH 
+  #   (urls will be prefixed with "/" and work relatively)
+  #
+  # GitHub Pages (http://username.github.io)
+  #   DO NOT SET BASE_PATH 
+  #   (urls will be prefixed with "/" and work relatively)
+  #
+  # GitHub Project Pages (http://username.github.io/project-name)
+  #
+  #   A GitHub Project site exists in the `gh-pages` branch of one of your repositories.
+  #  REQUIRED! Set BASE_PATH to: http://username.github.io/project-name
+  #
+  # CAUTION:
+  #   - When in Localhost, your site will run from root "/" regardless of BASE_PATH
+  #   - Only the following values are falsy: ["", null, false]
+  #   - When setting BASE_PATH it must be a valid url.
+  #     This means always setting the protocol (http|https) or prefixing with "/"
+  BASE_PATH : false
+
+  # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
+  # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
+  #
+  # Override this by defining an absolute path to assets here.
+  # ex: 
+  #   http://s3.amazonaws.com/yoursite/themes/watermelon
+  #   /assets
+  #
+  ASSET_PATH : false
+  IMAGE_PATH : false
+
+  # These paths are to the main pages Jekyll-Bootstrap ships with.
+  # Some JB helpers refer to these paths; change them here if needed.
+  #
+  archive_path: /archive.html
+  categories_path : /categories.html
+  tags_path : /tags.html
+  atom_path : /atom.xml
+  rss_path : /rss.xml
+  messages_path : /messages.html
+  about_path : /about.html
+
+  # Settings for comments helper
+  # Set 'provider' to the comment provider you want to use.
+  # Set 'provider' to false to turn commenting off globally.
+  #
+  comments :
+    provider : disqus
+    duoshuo :
+      short_name : liberize
+    disqus :
+      short_name : shinyashokudo
+    livefyre :
+      site_id : 123
+    intensedebate :
+      account : 123abc
+    facebook :
+      appid : 123
+      num_posts: 5
+      width: 580
+      colorscheme: light
+
+  # Settings for analytics helper
+  # Set 'provider' to the analytics provider you want to use.
+  # Set 'provider' to false to turn analytics off globally.
+  #        
+  analytics :
+    provider : baidu
+    baidu :
+      tracking_id : 'a7c01c4b55f06cf1df9cabb9b18a65a3' 
+    google : 
+      tracking_id : 'UA-41189818-1'
+    getclicky :
+      site_id : 
+    mixpanel :
+      token : '_MIXPANEL_TOKEN_'
+
+  # Settings for sharing helper. 
+  # Sharing is for things like tweet, plusone, like, reddit buttons etc.
+  # Set 'provider' to the sharing provider you want to use.
+  # Set 'provider' to false to turn sharing off globally.
+  #
+  sharing :
+    provider : direct
+
+  # Settings for all other include helpers can be defined by creating 
+  # a hash with key named for the given helper. ex:
+  #
+  #   pages_list :
+  #     provider : "custom"   
+  #
+  # Setting any helper's provider to 'custom' will bypass the helper code
+  # and include your custom code. Your custom file must be defined at:
+  #   ./_includes/custom/[HELPER]
+  # where [HELPER] is the name of the helper you are overriding.
+excerpt_separator: ""   # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed

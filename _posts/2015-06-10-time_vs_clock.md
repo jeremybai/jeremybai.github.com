@@ -30,14 +30,15 @@ tags: []
 	user 0m0.900s
 	sys 0m0.260s     
 ## time()和clock()函数说明
+
 　　了解了上面的相关知识接下来回到正题，Python的[time模块文档](https://docs.python.org/2/library/time.html#time.clock)，clock()的函数说明如下所示：  
-time.time()：  
+### time.time()：  
 
 	Return the time in seconds since the epoch as a floating point number. Note that even though the time is always returned as a floating point number, not all systems provide time with a better precision than 1 second. While this function normally returns non-decreasing values, it can return a lower value than a previous call if the system clock has been set back between the two calls.
  
 　　time()函数返回的是从Epoch（在Linux上是1970年1月1日00:00:00 UTC，在Windows上可能是1601年1月1日00:00:00 UTC，可以通过`time.gmtime(0)`函数获取当前系统的Epoch时间）开始所经过的秒数。尽管这个函数返回的时间是浮点数，但是并不意味着所有的系统都能够提供小于1秒的精度。虽然这个额函数返回的是递增的值，如果系统时钟被设置之后该函数的返回值可能比之前一次调用小。  
 
-time.clock()：  
+### time.clock()：  
 
 	On Unix, return the current processor time as a floating point number expressed in seconds. The precision, and in fact the very definition of the meaning of “processor time”, depends on that of the C function of the same name, but in any case, this is the function to use for benchmarking Python or timing algorithms.
 	
