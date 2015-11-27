@@ -10,12 +10,13 @@ $(document).ready(function() {
     $('#loader').show();
     $.ajax({url: '/atom.xml?r=' + (Math.random() * 999999), dataType: 'xml', success: function(data) {
       var rq = new RegExp($('#query').val(), 'im');
-      var rl = /\/([^\/]+)\.html$/;
+      // var rl = /\/([^\/]+)\.html$/;
+	  var rl = /\/([^\/]+)$/;
       var html = '';
       $(data).find('entry').each(function(index, entry) {
         var title = $(entry).find('title').text();
         var link = $(entry).find('link').attr('href');
-        var title_en = rl.exec(link)[1].replace('-', ' ');
+        var title_en = rl.exec(link)[1];
         var content = $(entry).find('content').text();
         if (rq.test(title) || rq.test(title_en) || rq.test(content)) {
           var parts = $(entry).find('updated').text().split(/[-T:+]/g);
