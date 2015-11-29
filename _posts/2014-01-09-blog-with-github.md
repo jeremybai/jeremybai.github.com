@@ -273,3 +273,8 @@ tags: [工具使用]
 
 	set SSL_CERT_FILE=C:\RailsInstaller\cacert.pem
 　　为了不用每一次都输入这个命令，添加环境变量SSL_CERT_FILE，值为C:\RailsInstaller\cacert.pem。
+### 5.10 Liquid Exception: highlight tag was never closed...
+　　[修复这个错误](http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed)，你需要在你的`_config.yml`文件中增加下面一行:  
+
+	excerpt_separator: ""   
+	
