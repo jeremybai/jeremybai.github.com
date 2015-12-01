@@ -12,7 +12,7 @@ tags: []
 ## 模块的导入
 　　除了import module这种用法之外，还有其他的一些使用方法，比如：`from module import *`，这种导入方法把模块（module）的所有内容全都导入，再比如：`from module import name`，这种用法可以让你从模块（module）中导入一个指定的部分（name）到当前命名空间中，使用from…import…语句可以避免在程序中使用前缀符，比如说，`from module import name`时，当需要使用name时，不需要通过module.name这种方式，只需要直接使用name就可以了。    
 ## 模块的属性
-　　使用dir函数可以将对象的属性（包括定义的函数，类和变量等等）都列出来，以copy模块为例：    
+　　使用dir函数可以列出模块定义的标识符，标识符有函数、类和变量等等，以copy模块为例：    
 
 	>>> dir(copy)
 	['Error', 'PyStringMap', '_EmptyClass', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '_copy_dispatch', '_copy_immutable', '_copy_inst', '_copy_with_constructor', '_copy_with_copy_method', '_deepcopy_atomic','_deepcopy_dict', '_deepcopy_dispatch', '_deepcopy_inst', '_deepcopy_list', '_deepcopy_method', '_deepcopy_tuple', '_keep_alive', '_reconstruct', '_test', 'copy', 'deepcopy', 'dispatch_table', 'error', 'name', 't', 'weakref']
