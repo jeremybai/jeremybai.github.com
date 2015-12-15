@@ -49,7 +49,7 @@ httpd.c:495:56: warning: incompatible integer to pointer conversion passing 'int
 　　有四个警告，让我们一一解决掉，首先是：  
 {% highlight c %}
 httpd.c:437:52: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different
-{% endhighlight %} 　　
+{% endhighlight %} 
 　　这个警告的意思就是getsockname函数的第三个参数应该是socklen_t *类型，但是实际传入的参数类型是int *类型，只需要修改下namelen定义的类型修改为socklen_t类型。  
 {% highlight c %}
 httpd.c:491:24: warning: passing 'int *' to parameter of type 'socklen_t *' (aka 'unsigned int *') converts between pointers to integer types with different
@@ -57,7 +57,7 @@ httpd.c:491:24: warning: passing 'int *' to parameter of type 'socklen_t *' (aka
 　　这个错误与上面错误类似，也是类型不匹配，将client_name_len定义为socklen_t类型就好了。  
 {% highlight c %}
 httpd.c:495:40: warning: incompatible pointer types passing 'void (int)' to parameter of type 'void *(*)(void *)' [-Wincompatible-pointer-types]
-{% endhighlight %} 
+{% endhighlight %}
 　　这个错误也是参数类型不匹配，pthread_create函数的第三个参数是函数指针类型，这个函数指针应该是void *(*)(void *)类型，但是定义的accept_request声明为；   
 
 	void accept_request(int);  
