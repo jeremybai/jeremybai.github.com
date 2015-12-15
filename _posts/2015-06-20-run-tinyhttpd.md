@@ -10,7 +10,7 @@ tags: []
 
 　　从[sourceforge](http://sourceforge.net/projects/tinyhttpd/)上下载源码到本地，我在看源码之前喜欢先将程序运行起来看下程序运行的效果，这样对于程序的功能先有一个感性的认识。  
 　　下载下来的源码是在Solaris 2.6上编译运行的，在httpd.c中写道：在如果你想要在Linux上运行的话，需要进行一些修改：    
-　　
+
 	1) 注释掉 #include <pthread.h>   
 	2) 注释掉newthread变量的定义  
 	3) 注释掉pthread_create()函数的调用  
@@ -58,11 +58,11 @@ httpd.c:491:24: warning: passing 'int *' to parameter of type 'socklen_t *' (aka
 {% highlight c %}
 httpd.c:495:40: warning: incompatible pointer types passing 'void (int)' to parameter of type 'void *(*)(void *)' [-Wincompatible-pointer-types]
 {% endhighlight %} 
-　　这个错误也是参数类型不匹配，pthread_create函数的第三个参数是函数指针类型，这个函数指针应该是void *(*)(void *)类型，但是定义的accept_request声明为；  
-　　
+　　这个错误也是参数类型不匹配，pthread_create函数的第三个参数是函数指针类型，这个函数指针应该是void *(*)(void *)类型，但是定义的accept_request声明为；   
+
 	void accept_request(int);  
-　　所以需要对accept_request进行一些修改，首先将accept_request声明为：  
-　　
+　　所以需要对accept_request进行一些修改，首先将accept_request声明为：   
+
 	void *accept_request(void *);  
 　　因为参数类型和函数返回值都改变了，所以在函数内部需要做些改动，在client使用之前将ptr_client转为client，还有就是需要在最后增加返回语句return NULL;，在中间需要返回的时候也需要返回NULL，修改完的accept_request代码如下：  
 {% highlight c %}
@@ -148,10 +148,10 @@ void *accept_request(void *pclient)
 {% endhighlight %} 
 　　再将-lsocket从Makefile中删去即可。  
 　　最后，还有一处错误需要修改：  
-　　
+
 	execl(path, path, NULL);  
 　　改为  
-　　
+
 	execl(path, query_string, NULL);  
 　　再次运行make，没有警告了，运行可执行文件httpd：./ httpd，显示程序在哪个端口监听，打开浏览器，输入127.0.0.1:<端口号>，页面如图所示：  
 ![](http://7fv9jl.com1.z0.glb.clouddn.com/2015-06-20-run-tinyhttpd-1.png)  
