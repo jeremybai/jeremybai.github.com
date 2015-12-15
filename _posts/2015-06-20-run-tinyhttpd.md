@@ -146,7 +146,7 @@ void *accept_request(void *pclient)
     return NULL;
 }
 {% endhighlight %} 
-　　再将-lsocket从Makefile中删去即可。  
+　　再将`-lsocket`从`Makefile`中删去即可。  
 　　最后，还有一处错误需要修改：  
 
 	execl(path, path, NULL);  
