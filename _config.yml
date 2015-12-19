@@ -94,9 +94,9 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
+    provider : duoshuo
     duoshuo :
-      short_name : liberize
+      short_name : shinyashokudo
     disqus :
       short_name : shinyashokudo
     livefyre :
@@ -118,7 +118,7 @@ JB :
     baidu :
       tracking_id : 'cb3ad7146e7ee67fafd8896735e4894d' 
     google : 
-      tracking_id : 'UA-41189818-1'
+      tracking_id : ''
     getclicky :
       site_id : 
     mixpanel :
