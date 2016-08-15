@@ -47,9 +47,9 @@ tags: [DigitalOcean,VPS]
 ##问题1: 以root权限登陆vsftpd
 　　如果你想以root权限登陆vsftp的话，还需要做如下设置，因为vsftpd默认是不允许root用户登录的：  
 
-	1、注释/etc/vsftpd/ftpusers中的root
-	2、注释/etc/vsftpd/user_list中的root
-	3、更改/etc/vsftpd/vsftpd.conf中的userlist_enable=NO
+	1、注释/etc/vsftpd.ftpusers中的root
+	2、注释/etc/vsftpd.user_list中的root
+	3、更改/etc/vsftpd/vsftp.conf中的userlist_enabel=NO
 	4、service vsftpd restart
 ##问题2: WordPress更新主题时ftp连接不上
 　　问题描述：
