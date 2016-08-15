@@ -71,13 +71,6 @@ tags: [DigitalOcean,VPS]
 
     ssserver -c /etc/shadowsocks.json -d start
     ssserver -c /etc/shadowsocks.json -d stop
-　　开机启动设置，打开rc.local:  
-
-	nano /etc/rc.d/rc.local
-　　将shadowsocks的启动命令增加进去，命令尽量使用完整路径： 
-
-	/usr/bin/ssserver -c /etc/shadowsocks.json -d start
-　　接着运行`chmod +x /etc/rc.d/rc.local`命令确保脚本在启动时执行。
 #3.3 使用shadowsocks客户端
 　　shadowsocks的客户端支持大多数的主流平台，一般需要配置一下服务器的ip地址和之前设置好的连接密码即可，参考下面的链接：    
 - [Windows](https://github.com/shadowsocks/shadowsocks-csharp) / [OS X](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)  
