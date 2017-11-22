@@ -8,8 +8,8 @@ COMMING SOON PAGE
     **/
 	//var launch = new Date(2014, 03, 10, 16, 00, 00);
     //var launch = new Date(2014, 03, 11, 7, 25, 00);
-	//launch = new Date(2013, 08, 19, 15, 00, 00);
-	launch = new Date(2015, 12, 25, 00, 00, 00);
+	launch = new Date(2013, 08, 19, 15, 00, 00);
+	//launch = new Date(2015, 12, 25, 00, 00, 00);
     /**
     * The script
     **/
